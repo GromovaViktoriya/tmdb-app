@@ -1,0 +1,9 @@
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background-color: var(--color-page-background);
+    color: var(--color-body-text);
+    transition: background-color .3s ease, color .3s ease;
+}
