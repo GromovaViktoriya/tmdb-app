@@ -4,11 +4,9 @@
   font-weight: 400;
   color: var(--color-body-text);
   background-color: var(--color-page-background);
-  color-scheme: light;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-
   --filtered-page-gap: 24px;
 
   --color-white: #ffffff;
@@ -44,6 +42,7 @@
   --color-control-background: #f9f9f9;
   --color-control-text: #111827;
   --color-control-border: #d1d5db;
+  color-scheme: light;
 }
 
 :root[data-theme=dark] {
@@ -77,6 +76,7 @@
   --color-control-background: #1f2b40;
   --color-control-text: #f8fafc;
   --color-control-border: #324061;
+  color-scheme: dark;
 }
 
 body{
