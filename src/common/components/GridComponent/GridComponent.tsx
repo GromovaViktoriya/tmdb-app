@@ -4,14 +4,18 @@ import {GridMovieItem} from "@/features/movies/ui/GridMovieItem/GridMovieItem.ts
 
 type Props = {
     movies?: Movie[]
+    quantity?: number
 }
 
-export const GridComponent = ({movies}:Props) => {
+export const GridComponent = ({movies, quantity}:Props) => {
     return (
         <div className={s.grid}>
-            {movies && movies.slice(0, 6).map(movie => (
-                <GridMovieItem movie={movie}/>
-            ))}
+            {movies && quantity? movies.slice(0, quantity).map(movie => (
+                <GridMovieItem movie={movie} key={movie.id}/>
+            )) : movies && movies.map(movie => (
+                <GridMovieItem movie={movie} key={movie.id}/>
+            ))
+            }
         </div>
     )
 }
