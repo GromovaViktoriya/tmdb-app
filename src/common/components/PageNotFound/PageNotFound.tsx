@@ -56,7 +56,7 @@ export const PageNotFound = () => {
             <h1 className={s.title}>404</h1>
             <p className={s.subtitle}>Page not found. We can’t find what you’re looking for</p>
             <div className={s.actions}>
-                <a href={Path.Main} data-discover="true" className={`${s.button} variantMain sizeMedium`} >To main page</a>
+                <a href={Path.Main} data-discover="true" className={`button variantMain sizeMedium`} >To main page</a>
             </div>
         </section>
     )
