@@ -1,0 +1,9 @@
+.movieGrid {
+    --movie-grid-columns: 5;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(var(--movie-grid-columns, 6), minmax(0, 1fr));
+    gap: 24px;
+}

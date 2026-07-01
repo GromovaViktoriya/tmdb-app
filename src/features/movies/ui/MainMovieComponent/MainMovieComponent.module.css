@@ -1,0 +1,30 @@
+.section{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.title{
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+a{
+    font-weight: 500;
+    color: var(--color-indigo-400);
+    text-decoration: inherit;
+}
+
+a:hover {
+    color: var(--color-indigo-500);
+}
+
+.viewMoreLink{
+    text-decoration: none;
+}
