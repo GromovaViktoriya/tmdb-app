@@ -1,42 +1,54 @@
 import {baseApi} from "@/app/api/baseApi.ts";
-import type {MovieParams, MoviesResponse} from "@/features/movies/api/tmdbApi.types.ts";
+import type {
+    getMoviesByCategoryParams,
+    MovieCreditsResponse, MovieDetailsParams, MovieDetailsResponse, MovieParamsWithId,
+    MoviesResponse, SearchParams,
+} from "@/features/movies/api/tmdbApi.types.ts";
 
 export const tmdbApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        fetchPopularMovies: build.query<MoviesResponse, MovieParams>({
-            query: (params) => ({
-                url: '/movie/popular',
+        getMoviesByCategory: build.query<MoviesResponse, getMoviesByCategoryParams>({
+            query: ({category, params}) => ({
+                url: `/movie/${category}`,
                 params
             }),
             providesTags: ['Movie'],
         }),
-        fetchNowPlayingMovies: build.query<MoviesResponse, MovieParams>({
-            query: (params) => ({
-                url: '/movie/now_playing',
+        getSimilarMovies: build.query<MoviesResponse, MovieParamsWithId>({
+            query: ({movieId, params}) => ({
+                url: `/movie/${movieId}/similar`,
+                params,
+            }),
+            providesTags: ['Movie'],
+        }),
+        getMovieCredits: build.query<MovieCreditsResponse, MovieParamsWithId>({
+            query: ({movieId, params}) => ({
+                url: `/movie/${movieId}/credits`,
                 params
             }),
             providesTags: ['Movie'],
         }),
-        fetchTopRatedMovies: build.query<MoviesResponse, MovieParams>({
-            query: (params) => ({
-                url: '/movie/top_rated',
-                params
+        getMovieDetails: build.query<MovieDetailsResponse, MovieDetailsParams>({
+            query: ({movieId, language}) => ({
+                url: `/movie/${movieId}`,
+                language
             }),
             providesTags: ['Movie'],
         }),
-        fetchUpcomingMovies: build.query<MoviesResponse, MovieParams>({
+        searchMovies: build.query<MoviesResponse, SearchParams>({
             query: (params) => ({
-                url: '/movie/upcoming',
+                url: `/search/movie`,
                 params
             }),
             providesTags: ['Movie'],
-        }),
+        })
     }),
 });
 
 export const {
-    useFetchPopularMoviesQuery,
-    useFetchNowPlayingMoviesQuery,
-    useFetchTopRatedMoviesQuery,
-    useFetchUpcomingMoviesQuery
+    useGetMoviesByCategoryQuery,
+    useGetMovieCreditsQuery,
+    useGetSimilarMoviesQuery,
+    useGetMovieDetailsQuery,
+    useSearchMoviesQuery,
 } = tmdbApi

@@ -87,7 +87,7 @@ body{
   color: var(--color-body-text);
 }
 
-button {
+button,.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -99,19 +99,6 @@ button {
   border: 1px solid transparent;
   text-decoration: none;
   font-family: inherit;
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: 999px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color .2s ease, color .2s ease, border-color .2s ease, opacity .2s ease;
-  border: 1px solid transparent;
-  text-decoration: none;
 }
 
 .button:hover:not(:disabled) {
@@ -151,11 +138,6 @@ button {
   right: 12px;
 }
 
-.neutral {
-  background-color: var(--color-yellow-400);
-  color: var(--color-gray-900);
-}
-
 .badge {
   display: flex;
   align-items: center;
@@ -166,4 +148,17 @@ button {
   font-size: 14px;
   font-weight: 600;
   color: var(--color-white);
+}
+
+.positive {
+  background-color: var(--color-green-600);
+}
+
+.negative {
+  background-color: var(--color-red-600);
+}
+
+.neutral {
+  background-color: var(--color-yellow-400);
+  color: var(--color-gray-900);
 }

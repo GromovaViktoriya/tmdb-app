@@ -2,19 +2,15 @@ import s from "./Main.module.css"
 import {SearchForm} from "@/common/components/SearchForm/SearchForm.tsx";
 import {MainMovieComponent} from "@/features/movies/ui/MainMovieComponent/MainMovieComponent.tsx";
 import {Path} from "@/common/routing";
-import {
-    useFetchNowPlayingMoviesQuery,
-    useFetchPopularMoviesQuery,
-    useFetchTopRatedMoviesQuery,
-    useFetchUpcomingMoviesQuery
-} from "@/features/movies/api/tmdbApi.ts";
 import {getRandomElement} from "@/common/utils/getRandomElement.ts";
+import {useGetMoviesByCategoryQuery} from "@/features/movies/api/tmdbApi.ts";
+import {movieCategory} from "@/common/constants";
 
 export const Main = () => {
-    const {data:popularData} = useFetchPopularMoviesQuery({language: "en-US", page: 1})
-    const {data:topRatedData} = useFetchTopRatedMoviesQuery({language: "en-US", page: 1})
-    const {data:upcomingData} = useFetchUpcomingMoviesQuery({language: "en-US", page: 1})
-    const {data:nowPlayingData} = useFetchNowPlayingMoviesQuery({language: "en-US", page: 1})
+    const {data:popularData} = useGetMoviesByCategoryQuery({category: movieCategory.popular})
+    const {data:topRatedData} = useGetMoviesByCategoryQuery({category: movieCategory.topRated})
+    const {data:upcomingData} = useGetMoviesByCategoryQuery({category: movieCategory.upcoming})
+    const {data:nowPlayingData} = useGetMoviesByCategoryQuery({category: movieCategory.nowPlaying})
 
     const randomPopularMovie = getRandomElement(popularData?.results || []);
 
