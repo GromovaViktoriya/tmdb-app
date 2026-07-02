@@ -7,13 +7,14 @@ type Props = {
     movies?: Movie[]
     quantity?: number
     actors?: CastMember[]
+    gridSix?: boolean
 }
 
-export const GridComponent = ({movies, quantity, actors}:Props) => {
+export const GridComponent = ({movies, quantity, actors, gridSix}: Props) => {
     return (
-        <div className={s.grid}>
+        <div className={gridSix? s.grid6 : s.grid5}>
 
-            {movies && quantity? movies.slice(0, quantity).map(movie => (
+            {movies && quantity ? movies.slice(0, quantity).map(movie => (
                 <GridMovieItem movie={movie} key={movie.id}/>
             )) : movies && movies.map(movie => (
                 <GridMovieItem movie={movie} key={movie.id}/>

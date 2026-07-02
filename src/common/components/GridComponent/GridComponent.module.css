@@ -2,7 +2,13 @@
     --movie-grid-columns: 5;
 }
 
-.grid{
+.grid5{
+    display: grid;
+    grid-template-columns: repeat(var(--movie-grid-columns, 5), minmax(0, 1fr));
+    gap: 24px;
+}
+
+.grid6{
     display: grid;
     grid-template-columns: repeat(var(--movie-grid-columns, 6), minmax(0, 1fr));
     gap: 24px;
