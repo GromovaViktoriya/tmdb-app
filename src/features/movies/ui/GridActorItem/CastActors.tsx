@@ -15,7 +15,7 @@ export const CastActors = ({movieId}:Props) => {
             <div className={s.header}>
                 <h2 className={s.title}>Cast</h2>
             </div>
-            <GridComponent actors={data?.cast} quantity={6}/>
+            <GridComponent actors={data?.cast} quantity={6} gridSix={true}/>
         </section>
     )
 }

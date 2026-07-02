@@ -13,7 +13,7 @@ export const SimilarMovies = ({movieId}: Props) => {
             <div className={s.header}>
                 <h2 className={s.title}>Similar Movies</h2>
             </div>
-            <GridComponent movies={data?.results} quantity={6}/>
+            <GridComponent movies={data?.results} quantity={6} gridSix={true} />
         </section>
     )
 }
