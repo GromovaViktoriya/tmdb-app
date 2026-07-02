@@ -8,5 +8,5 @@ export const Path = {
     Search: '/search',
     Favorites: '/favorites',
     NotFound: '*',
-    Movie: '/movie'
+    Movie: '/movie/:id'
 } as const

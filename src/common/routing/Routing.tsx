@@ -9,6 +9,7 @@ import {NowPlayingMovies} from "@/features/movies/ui/NowPlayingMovies/NowPlaying
 import {Favorites} from "@/common/components/Favorites/Favorites.tsx";
 import {PageNotFound} from "@/common/components/PageNotFound/PageNotFound.tsx";
 import {SearchPage} from "@/common/components/SearchPage/SearchPage.tsx";
+import {MoviePage} from "@/features/movies/ui/MoviePage/MoviePage.tsx";
 
 
 export const Routing = () => (
@@ -22,5 +23,6 @@ export const Routing = () => (
         <Route path={Path.Search} element={<SearchPage />} />
         <Route path={Path.Favorites} element={<Favorites />} />
         <Route path={Path.NotFound} element={<PageNotFound />} />
+        <Route path={Path.Movie} element={<MoviePage />} />
     </Routes>
 )

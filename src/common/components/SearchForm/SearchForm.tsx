@@ -1,26 +1,29 @@
 import s from "./SearchForm.module.css"
 import {type SubmitHandler, useForm} from "react-hook-form";
-import {useNavigate} from "react-router";
+import {useNavigate, useSearchParams} from "react-router";
 import {Path} from "@/common/routing";
 
-interface SearchFormValues {
+type SearchFormValues = {
     searchQuery: string;
 }
 
 export const SearchForm = () => {
+    const [params] = useSearchParams();
+    const query = params.get('query')
+
     const {
         register,
         handleSubmit,
         watch,
     } = useForm<SearchFormValues>({
         defaultValues: {
-            searchQuery: ''
+            searchQuery: query || ''
         }
     });
+
     const navigate = useNavigate();
     const currentSearchQuery = watch('searchQuery');
     const isDisabled = currentSearchQuery.trim() === '';
-
 
     const onSubmit: SubmitHandler<SearchFormValues> = (data) => {
         const query = data.searchQuery.trim();
