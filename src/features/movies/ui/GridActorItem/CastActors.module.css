@@ -1,0 +1,23 @@
+.section{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title{
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(var(--movie-grid-columns, 6), minmax(0, 1fr));
+    gap: 24px;
+}

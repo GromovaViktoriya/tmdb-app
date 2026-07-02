@@ -11,17 +11,22 @@ export const GridMovieItem = ({movie}: Props) => {
     const { isFavorite, toggleFavorite } = useFavorites();
 
     const active = isFavorite(movie.id);
+    const movieRating = movie?.vote_average.toFixed(1)
+    const badgeColor = movieRating && +movieRating <= 5
+        ? "negative"
+        : movieRating && +movieRating <= 6.9
+            ? "neutral"
+            : "positive";
 
     return (
         <article className={s.card}>
             <div className={s.posterFrame}>
-                <a href="" className={s.posterLink}></a>
-                <a className={s.posterLink} href="" data-discover="true">
+                <a className={s.posterLink} href={`/movie/${movie.id}`} data-discover="true">
                     {movie.poster_path
                         ? <img className={s.poster} alt={movie.title}
                                src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`}/>
                         : <div className={s.posterFallback}>No poster</div>}
-                    <span className={`ratingBadge neutral badge`}
+                    <span className={`ratingBadge ${badgeColor} badge`}
                           aria-label={`Rating ${movie.vote_average}`}>{movie.vote_average.toFixed(1)}</span>
                 </a>
                 <button type="button"
