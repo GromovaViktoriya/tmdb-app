@@ -1,6 +1,37 @@
+.page{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-block: 32px;
+}
+
 .title{
     margin: 0;
     font-size: 28px;
     font-weight: 700;
     color: var(--color-gray-900);
+}
+
+.section{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.searchTitle{
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.emptyMessage{
+    margin: 0;
+    font-size: 16px;
+    color: var(--color-gray-600);
 }
