@@ -13,7 +13,7 @@ export const Favorites = () => {
                 ? <section className={`${s.section} ${s.gridSection}`}>
                     <div className={s.header}>
                         <h2 className={s.headerTitle}>Favorite Movies</h2>
-                        <GridComponent movies={favorites}/>
+                        <GridComponent movies={favorites} gridSix={true}/>
                     </div>
                 </section>
                 : <p className={s.message}>Add movies to favorites to see them on this page.</p>

@@ -17,7 +17,7 @@ export const MainMovieComponent = ({title, href, data}:Props)=>{
                     <button type="button" className="button variantSecondary sizeSmall">View more</button>
                 </a>
             </div>
-            <GridComponent movies={data} quantity={6}/>
+            <GridComponent movies={data} quantity={6} gridSix={true}/>
         </section>
     )
 }
