@@ -19,13 +19,14 @@ export const MovieDetail = ({movieId}: Props) => {
         navigate(-1)
     }
 
-
-
     return (
         <div className={s.content}>
             <div className={s.wrapper}>
                 <img className={s.image} alt={movie?.title}
-                     src={ movie?.poster_path? `https://image.tmdb.org/t/p/w342/${movie?.poster_path}`: 'https://placehold.co/400x600?text=No+Poster'}/>
+                     src={ movie?.poster_path
+                         ? `https://image.tmdb.org/t/p/w342/${movie?.poster_path}`
+                         : 'https://placehold.co/400x600?text=No+Poster'}
+                />
             </div>
             <div className={s.details}>
                 <header className={s.header}>
@@ -38,16 +39,18 @@ export const MovieDetail = ({movieId}: Props) => {
                             className={s.metaItem}>Release year: {movie && new Date(movie.release_date).getFullYear()}</span>
                         <span className={`${s.ratingBadge} ${badgeColor} badge`}>{movie?.vote_average.toFixed(1)}</span>
                         <span
-                            className={s.metaItem}>{movie?.runtime && `Runtime: ${Math.floor(movie.runtime / 60)}h ${movie?.runtime % 60}m`}</span>
+                            className={s.metaItem}>{movie?.runtime
+                            ? `Runtime: ${Math.floor(movie.runtime / 60)}h ${movie?.runtime % 60}m`
+                            : 'Runtime: Runtime unavailable'}</span>
                     </div>
                 </header>
-                <p className={s.text}>{movie?.overview}</p>
+                <p className={s.text}>{ movie?.overview && movie?.overview.length > 0? movie.overview : 'No overview available.'}</p>
                 <div className={s.detailSection}>
                     <h2 className={s.detailTitle}>Genres</h2>
                     <ul className={s.list}>
-                        {movie?.genres.map((genre) => (
+                        {movie?.genres && movie.genres.length !== 0? movie.genres.map((genre) => (
                             <li className={s.item} key={genre.id}>{genre.name}</li>
-                        ))}
+                        )) : <p className={s.placeholder}>No genres available.</p>}
                     </ul>
                 </div>
             </div>

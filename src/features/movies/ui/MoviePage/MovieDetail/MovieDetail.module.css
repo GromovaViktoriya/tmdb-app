@@ -97,3 +97,9 @@
 .ratingBadge{
     box-shadow: 0 4px 16px rgb(var(--color-blue-600-rgb) / .15);
 }
+
+.placeholder{
+    margin: 0;
+    font-size: 16px;
+    color: var(--color-gray-500);
+}
