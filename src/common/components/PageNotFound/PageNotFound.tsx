@@ -1,5 +1,6 @@
 import s from "./PageNotFound.module.css"
 import {Path} from "@/common/routing";
+import {Link} from "react-router";
 
 export const PageNotFound = () => {
     return (
@@ -56,7 +57,7 @@ export const PageNotFound = () => {
             <h1 className={s.title}>404</h1>
             <p className={s.subtitle}>Page not found. We can’t find what you’re looking for</p>
             <div className={s.actions}>
-                <a href={Path.Main} data-discover="true" className={`button variantMain sizeMedium`} >To main page</a>
+                <Link to={Path.Main} data-discover="true" className={`button variantMain sizeMedium`} >To main page</Link>
             </div>
         </section>
     )

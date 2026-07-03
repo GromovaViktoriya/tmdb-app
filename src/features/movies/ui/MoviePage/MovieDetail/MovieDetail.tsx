@@ -1,5 +1,6 @@
 import s from "./MovieDetail.module.css"
 import {useGetMovieDetailsQuery} from "@/features/movies/api/tmdbApi.ts";
+import {useNavigate} from "react-router";
 
 type Props = {
     movieId: number
@@ -7,11 +8,16 @@ type Props = {
 
 export const MovieDetail = ({movieId}: Props) => {
     const {data: movie} = useGetMovieDetailsQuery({movieId, language: "en-US"});
+    const navigate = useNavigate()
+
     const movieRating = movie?.vote_average.toFixed(1)
     const badgeColor = movieRating && +movieRating <= 5
         ? "negative" : movieRating && +movieRating <= 6.9
             ? "neutral"
             : "positive";
+    const navigateHandler = ()=>{
+        navigate(-1)
+    }
 
     return (
         <div className={s.content}>
@@ -23,7 +29,7 @@ export const MovieDetail = ({movieId}: Props) => {
                 <header className={s.header}>
                     <div className={s.top}>
                         <h1 className={s.title}>{movie?.title}</h1>
-                        <button type="button" className={`button variantSecondary sizeSmall`}>Back</button>
+                        <button type="button" className={`button variantSecondary sizeSmall` } onClick={navigateHandler}>Back</button>
                     </div>
                     <div className={s.meta}>
                         <span

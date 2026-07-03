@@ -21,7 +21,7 @@ export const GridComponent = ({movies, quantity, actors, gridSix}: Props) => {
             ))}
 
             {actors && quantity && actors.slice(0, quantity).map((actor) => (
-                <ActorCard actor={actor}/>
+                <ActorCard actor={actor} key={actor.id}/>
             ))}
         </div>
     )

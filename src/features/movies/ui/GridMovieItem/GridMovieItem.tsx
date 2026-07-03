@@ -1,6 +1,7 @@
 import s from "./GridMovieItem.module.css"
 import type {Movie} from "@/features/movies/api/tmdbApi.types.ts";
 import {useFavorites} from "@/common/hooks/useFavorites.ts";
+import {Link} from "react-router";
 
 
 type Props = {
@@ -21,14 +22,14 @@ export const GridMovieItem = ({movie}: Props) => {
     return (
         <article className={s.card}>
             <div className={s.posterFrame}>
-                <a className={s.posterLink} href={`/movie/${movie.id}`} data-discover="true">
+                <Link className={s.posterLink} to={`/movie/${movie.id}`} data-discover="true">
                     {movie.poster_path
                         ? <img className={s.poster} alt={movie.title}
                                src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`}/>
                         : <div className={s.posterFallback}>No poster</div>}
                     <span className={`ratingBadge ${badgeColor} badge`}
                           aria-label={`Rating ${movie.vote_average}`}>{movie.vote_average.toFixed(1)}</span>
-                </a>
+                </Link>
                 <button type="button"
                         className={`button variantSecondary sizeSmall ${s.favoriteButton} ${active ? s.favoriteButtonVisible : ''}`}
                         aria-pressed={active} aria-label="Remove from favorites"
@@ -41,9 +42,9 @@ export const GridMovieItem = ({movie}: Props) => {
                     </svg>
                 </button>
             </div>
-            <a className={s.cardTitleLink} href={`/movie/${movie.id}`} data-discover="true">
+            <Link className={s.cardTitleLink} to={`/movie/${movie.id}`} data-discover="true">
                 <h3 className={s.cardTitle}>{movie.title}</h3>
-            </a>
+            </Link>
         </article>
     )
 }
