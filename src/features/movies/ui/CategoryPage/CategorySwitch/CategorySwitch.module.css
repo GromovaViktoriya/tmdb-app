@@ -1,0 +1,9 @@
+.categorySwitchContainer {
+    margin: 20px auto 0;
+}
+
+.categoryButtons{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
