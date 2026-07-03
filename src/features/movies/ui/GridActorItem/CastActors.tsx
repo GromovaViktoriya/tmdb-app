@@ -1,21 +1,19 @@
 import s from "./CastActors.module.css"
 import {GridComponent} from "@/common/components/GridComponent/GridComponent.tsx";
-import {useGetMovieCreditsQuery} from "@/features/movies/api/tmdbApi.ts";
+
+import type {CastMember} from "@/features/movies/api/tmdbApi.types.ts";
 
 type Props = {
-    movieId: number;
+    cast: CastMember[] | undefined;
 }
 
-export const CastActors = ({movieId}:Props) => {
-    const {data} = useGetMovieCreditsQuery({movieId, params:{page: 1, language: "en-US"}});
-
-
+export const CastActors = ({cast}:Props) => {
     return (
         <section className={s.section}>
             <div className={s.header}>
                 <h2 className={s.title}>Cast</h2>
             </div>
-            <GridComponent actors={data?.cast} quantity={6} gridSix={true}/>
+            <GridComponent actors={cast} quantity={6} gridSix={true}/>
         </section>
     )
 }

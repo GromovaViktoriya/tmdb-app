@@ -19,11 +19,13 @@ export const MovieDetail = ({movieId}: Props) => {
         navigate(-1)
     }
 
+
+
     return (
         <div className={s.content}>
             <div className={s.wrapper}>
                 <img className={s.image} alt={movie?.title}
-                     src={`https://image.tmdb.org/t/p/w342/${movie?.poster_path}`}/>
+                     src={ movie?.poster_path? `https://image.tmdb.org/t/p/w342/${movie?.poster_path}`: 'https://placehold.co/400x600?text=No+Poster'}/>
             </div>
             <div className={s.details}>
                 <header className={s.header}>

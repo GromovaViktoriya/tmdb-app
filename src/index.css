@@ -87,6 +87,10 @@ body{
   color: var(--color-body-text);
 }
 
+h1{
+  line-height: 1.1;
+}
+
 button,.button {
   display: inline-flex;
   align-items: center;
