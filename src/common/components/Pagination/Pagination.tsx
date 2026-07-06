@@ -8,9 +8,10 @@ type Props = {
     pagesCount: number | undefined,
 }
 export const Pagination = ({currentPage, setCurrentPage, pagesCount}: Props) => {
-    if (pagesCount && pagesCount <= 1) return null
+    const maxPages = Math.min(pagesCount ?? 1, 500);
+    if (maxPages <= 1) return null
 
-    const pages = getPaginationPages(currentPage, pagesCount ?? 1)
+    const pages = getPaginationPages(currentPage, maxPages ?? 1)
 
     return (
         <div className={s.container}>
