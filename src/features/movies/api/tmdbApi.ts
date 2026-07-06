@@ -4,6 +4,12 @@ import type {
     MovieCreditsResponse, MovieDetailsParams, MovieDetailsResponse, MovieParamsWithId,
     MoviesResponse, SearchParams,
 } from "@/features/movies/api/tmdbApi.types.ts";
+import {
+    MovieCreditsResponseSchema,
+    MovieDetailsResponseSchema,
+    MoviesResponseSchema
+} from "@/features/movies/api/tmdbApi.schemas.ts";
+import {withZodCatch} from "@/common/utils/withZodCatch.ts";
 
 export const tmdbApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
@@ -12,6 +18,7 @@ export const tmdbApi = baseApi.injectEndpoints({
                 url: `/movie/${category}`,
                 params
             }),
+            ...withZodCatch(MoviesResponseSchema),
             providesTags: ['Movie'],
         }),
         getSimilarMovies: build.query<MoviesResponse, MovieParamsWithId>({
@@ -19,6 +26,7 @@ export const tmdbApi = baseApi.injectEndpoints({
                 url: `/movie/${movieId}/similar`,
                 params,
             }),
+            ...withZodCatch(MoviesResponseSchema),
             providesTags: ['Movie'],
         }),
         getMovieCredits: build.query<MovieCreditsResponse, MovieParamsWithId>({
@@ -26,6 +34,7 @@ export const tmdbApi = baseApi.injectEndpoints({
                 url: `/movie/${movieId}/credits`,
                 params
             }),
+            ...withZodCatch(MovieCreditsResponseSchema),
             providesTags: ['Movie'],
         }),
         getMovieDetails: build.query<MovieDetailsResponse, MovieDetailsParams>({
@@ -33,6 +42,7 @@ export const tmdbApi = baseApi.injectEndpoints({
                 url: `/movie/${movieId}`,
                 language
             }),
+            ...withZodCatch(MovieDetailsResponseSchema),
             providesTags: ['Movie'],
         }),
         searchMovies: build.query<MoviesResponse, SearchParams>({
@@ -40,6 +50,7 @@ export const tmdbApi = baseApi.injectEndpoints({
                 url: `/search/movie`,
                 params
             }),
+            ...withZodCatch(MoviesResponseSchema),
             providesTags: ['Movie'],
         })
     }),
