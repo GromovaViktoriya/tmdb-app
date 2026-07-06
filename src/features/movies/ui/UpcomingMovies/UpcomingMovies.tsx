@@ -5,8 +5,13 @@ import {CategoryPage} from "@/features/movies/ui/CategoryPage/CategoryPage.tsx";
 
 export const UpcomingMovies = ()=>{
     const [currentPage, setCurrentPage] = useState(1)
-    const {data:upcomingData} = useGetMoviesByCategoryQuery({category: movieCategory.upcoming, params: {page: currentPage}})
+    const {data:upcomingData, isLoading} = useGetMoviesByCategoryQuery({category: movieCategory.upcoming, params: {page: currentPage}})
     return (
-        <CategoryPage data={upcomingData} pageTitle={"Upcoming Movies"} currentPage={currentPage} setCurrentPage ={setCurrentPage}/>
+        <CategoryPage data={upcomingData}
+                      pageTitle={"Upcoming Movies"}
+                      currentPage={currentPage}
+                      setCurrentPage ={setCurrentPage}
+                      isLoading={isLoading}
+        />
     )
 }

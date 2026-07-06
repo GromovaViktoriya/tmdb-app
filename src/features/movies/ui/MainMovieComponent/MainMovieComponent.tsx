@@ -7,9 +7,10 @@ type Props = {
     title: string
     href: string
     data: Movie[] | undefined
+    isLoading: boolean
 }
 
-export const MainMovieComponent = ({title, href, data}:Props)=>{
+export const MainMovieComponent = ({title, href, data, isLoading}:Props)=>{
     return (
         <section className={s.section}>
             <div className={s.header}>
@@ -18,7 +19,7 @@ export const MainMovieComponent = ({title, href, data}:Props)=>{
                     <button type="button" className="button variantSecondary sizeSmall">View more</button>
                 </Link>
             </div>
-            <GridComponent movies={data} quantity={6} gridSix={true}/>
+            <GridComponent movies={data} quantity={6} gridSix={true} isLoading={isLoading}/>
         </section>
     )
 }

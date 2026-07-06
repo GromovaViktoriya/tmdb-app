@@ -1,13 +1,16 @@
 import s from "./MovieDetail.module.css"
 import {useGetMovieDetailsQuery} from "@/features/movies/api/tmdbApi.ts";
 import {useNavigate} from "react-router";
+import {
+    MovieDetailSkeleton
+} from "@/features/movies/ui/MoviePage/MovieDetail/MovieDetailSkeleton/MovieDetailSkeleton.tsx";
 
 type Props = {
     movieId: number
 }
 
 export const MovieDetail = ({movieId}: Props) => {
-    const {data: movie} = useGetMovieDetailsQuery({movieId, language: "en-US"});
+    const {data: movie, isLoading} = useGetMovieDetailsQuery({movieId, language: "en-US"});
     const navigate = useNavigate()
 
     const movieRating = movie?.vote_average.toFixed(1)
@@ -19,6 +22,9 @@ export const MovieDetail = ({movieId}: Props) => {
         navigate(-1)
     }
 
+    if(isLoading){
+        return <MovieDetailSkeleton />
+    }
     return (
         <div className={s.content}>
             <div className={s.wrapper}>

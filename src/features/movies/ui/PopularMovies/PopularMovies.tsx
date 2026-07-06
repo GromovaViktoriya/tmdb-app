@@ -5,8 +5,13 @@ import {useState} from "react";
 
 export const PopularMovies = ()=>{
     const [currentPage, setCurrentPage] = useState(1)
-    const {data:popularData} = useGetMoviesByCategoryQuery({category: movieCategory.popular, params: {page: currentPage}})
+    const {data:popularData, isLoading} = useGetMoviesByCategoryQuery({category: movieCategory.popular, params: {page: currentPage}})
     return (
-        <CategoryPage data={popularData} pageTitle={"Popular Movies"} currentPage={currentPage} setCurrentPage ={setCurrentPage}/>
+        <CategoryPage data={popularData}
+                      pageTitle={"Popular Movies"}
+                      currentPage={currentPage}
+                      setCurrentPage ={setCurrentPage}
+                      isLoading = {isLoading}
+        />
     )
 }

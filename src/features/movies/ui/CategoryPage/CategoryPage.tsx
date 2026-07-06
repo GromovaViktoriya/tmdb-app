@@ -10,10 +10,11 @@ type Props = {
     pageTitle: string
     currentPage: number
     setCurrentPage: (currentPage: number) => void
+    isLoading: boolean
 }
 
 
-export const CategoryPage = ({data, pageTitle, setCurrentPage, currentPage}: Props) => {
+export const CategoryPage = ({data, pageTitle, setCurrentPage, currentPage, isLoading}: Props) => {
 
     return (
         <section className={s.page}>
@@ -21,7 +22,7 @@ export const CategoryPage = ({data, pageTitle, setCurrentPage, currentPage}: Pro
                <CategorySwitch/>
                 <section className={s.section}>
                     <div className={s.header}><h2 className={s.title}>{pageTitle}</h2></div>
-                    <GridComponent movies={data?.results}/>
+                    <GridComponent movies={data?.results} isLoading={isLoading}/>
                     <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pagesCount={data?.total_pages}/>
                 </section>
             </div>

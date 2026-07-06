@@ -2,12 +2,18 @@ import s from "./SearchForm.module.css"
 import {type SubmitHandler, useForm} from "react-hook-form";
 import {useNavigate, useSearchParams} from "react-router";
 import {Path} from "@/common/routing";
+import {SearchFormSkeleton} from "@/common/components/SearchForm/SearchFormSkeleton/SearchFormSkeleton.tsx";
+import type {ChangeEvent} from "react";
 
 type SearchFormValues = {
     searchQuery: string;
 }
 
-export const SearchForm = () => {
+type Props = {
+    isLoading?: boolean;
+}
+
+export const SearchForm = ({isLoading}: Props) => {
     const [params] = useSearchParams();
     const query = params.get('query')
 
@@ -32,10 +38,21 @@ export const SearchForm = () => {
         }
     };
 
+    if (isLoading) {
+        return <SearchFormSkeleton/>;
+    }
     return (
-            <form className={`${s.form} ${s.formWrapper}`} onSubmit={handleSubmit(onSubmit)}>
-                <input type="search" className={s.input} placeholder="Search for a movie" {...register('searchQuery')}/>
-                <button type="submit" className={"button variantMain sizeMedium"} disabled={isDisabled}>Search</button>
-            </form>
+        <form className={`${s.form} ${s.formWrapper}`} onSubmit={handleSubmit(onSubmit)}>
+            <input type="search" className={s.input}
+                   placeholder="Search for a movie"
+                   {...register('searchQuery', {
+                       onChange: (e: ChangeEvent<HTMLInputElement>) => {
+                           if (e.target.value === '') {
+                               navigate(Path.Search)
+                           }
+                       }
+                   })}/>
+            <button type="submit" className={"button variantMain sizeMedium"} disabled={isDisabled}>Search</button>
+        </form>
     )
 }

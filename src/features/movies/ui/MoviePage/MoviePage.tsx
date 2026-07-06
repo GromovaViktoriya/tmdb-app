@@ -8,14 +8,17 @@ import {useGetMovieCreditsQuery, useGetSimilarMoviesQuery} from "@/features/movi
 
 export const MoviePage = () => {
     const params = useParams()
-    const {data: castData} = useGetMovieCreditsQuery({movieId: Number(params.id), params: {page: 1, language: "en-US"}});
-    const {data:similarData} = useGetSimilarMoviesQuery({movieId:Number(params.id), params: {page: 1, language: "en-US"}});
+    const {data: castData, isLoading:isLoadingCast} = useGetMovieCreditsQuery({movieId: Number(params.id), params: {page: 1, language: "en-US"}});
+    const {data:similarData, isLoading:isLoadingSimilar} = useGetSimilarMoviesQuery({movieId:Number(params.id), params: {page: 1, language: "en-US"}});
+
+    const showCast = isLoadingCast || (castData?.cast && castData.cast.length > 0);
+    const showSimilar = isLoadingSimilar || (similarData?.results && similarData.results.length > 0);
 
     return (
         <section className={s.section}>
             <MovieDetail movieId={Number(params.id)}/>
-            {castData?.cast.length !== 0 && <CastActors cast={castData?.cast}/>}
-            {similarData?.results.length !== 0 && <SimilarMovies movies={similarData?.results}/>}
+            {showCast && <CastActors cast={castData?.cast} isLoading={isLoadingCast}/>}
+            {showSimilar && <SimilarMovies movies={similarData?.results} isLoading={isLoadingSimilar}/>}
         </section>
     )
 }

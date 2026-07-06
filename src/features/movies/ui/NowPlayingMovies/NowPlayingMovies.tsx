@@ -5,8 +5,13 @@ import {CategoryPage} from "@/features/movies/ui/CategoryPage/CategoryPage.tsx";
 
 export const NowPlayingMovies = ()=>{
     const [currentPage, setCurrentPage] = useState(1)
-    const {data:nowPlayingData} = useGetMoviesByCategoryQuery({category: movieCategory.nowPlaying, params: {page: currentPage}})
+    const {data:nowPlayingData, isLoading} = useGetMoviesByCategoryQuery({category: movieCategory.nowPlaying, params: {page: currentPage}})
     return (
-        <CategoryPage data={nowPlayingData} pageTitle={"Now Playing Movies"} currentPage={currentPage} setCurrentPage ={setCurrentPage}/>
+        <CategoryPage data={nowPlayingData}
+                      pageTitle={"Now Playing Movies"}
+                      currentPage={currentPage}
+                      setCurrentPage ={setCurrentPage}
+                      isLoading={isLoading}
+        />
     )
 }

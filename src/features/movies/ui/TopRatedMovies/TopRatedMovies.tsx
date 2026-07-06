@@ -5,8 +5,13 @@ import {CategoryPage} from "@/features/movies/ui/CategoryPage/CategoryPage.tsx";
 
 export const TopRatedMovies = ()=>{
     const [currentPage, setCurrentPage] = useState(1)
-    const {data:topRatedData} = useGetMoviesByCategoryQuery({category: movieCategory.topRated, params: {page: currentPage}})
+    const {data:topRatedData, isLoading} = useGetMoviesByCategoryQuery({category: movieCategory.topRated, params: {page: currentPage}})
     return (
-        <CategoryPage data={topRatedData} pageTitle={"Top Rated Movies"} currentPage={currentPage} setCurrentPage ={setCurrentPage}/>
+        <CategoryPage data={topRatedData}
+                      pageTitle={"Top Rated Movies"}
+                      currentPage={currentPage}
+                      setCurrentPage ={setCurrentPage}
+                      isLoading={isLoading}
+        />
     )
 }
