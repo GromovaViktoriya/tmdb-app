@@ -6,7 +6,7 @@ import {Path} from "@/common/routing";
 
 export const CategorySwitch = () => {
     const getLinkClass = ({ isActive }: { isActive: boolean }) =>
-        isActive ? `button variantMain sizeSmall` : 'button variantSecondary sizeSmall'
+        isActive ? `button variantSecondary sizeSmall ${s.buttonActive}` : 'button variantSecondary sizeSmall'
 
     return (
         <div className={s.categorySwitchContainer}>

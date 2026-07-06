@@ -7,3 +7,9 @@
     flex-wrap: wrap;
     gap: 12px;
 }
+
+.buttonActive{
+    background-color: var(--color-blue-600);
+    border-color: var(--color-blue-600);
+    color: var(--color-white);
+}
