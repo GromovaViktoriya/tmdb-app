@@ -5,6 +5,7 @@ import {Outlet} from "@/common/components/Outlet/Outlet.tsx";
 import {useGetMoviesByCategoryQuery} from "@/features/movies/api/tmdbApi.ts";
 import {LinearProgress} from "@/common/components/LinearProgress/LinearProgress.tsx";
 import {movieCategory} from "@/common/constants";
+import {ToastContainer} from "react-toastify";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             {(popularFetching && nowPlayingFetching && upcomingFetching && topRatedFetching)  && <LinearProgress/>}
             <Outlet/>
             <Footer/>
+            <ToastContainer />
         </div>
     )
 }
