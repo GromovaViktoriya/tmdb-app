@@ -3,7 +3,7 @@ import {SearchForm} from "@/common/components/SearchForm/SearchForm.tsx";
 import {MainMovieComponent} from "@/features/movies/ui/MainMovieComponent/MainMovieComponent.tsx";
 import {Path} from "@/common/routing";
 import {getRandomElement} from "@/common/utils/getRandomElement.ts";
-import {useGetMoviesByCategoryQuery} from "@/features/movies/api/tmdbApi.ts";
+import {useGetConfigurationQuery, useGetMoviesByCategoryQuery} from "@/features/movies/api/tmdbApi.ts";
 import {movieCategory} from "@/common/constants";
 
 export const Main = () => {
@@ -11,6 +11,9 @@ export const Main = () => {
     const {data:topRatedData, isLoading:isTopLoading} = useGetMoviesByCategoryQuery({category: movieCategory.topRated})
     const {data:upcomingData, isLoading:isUpcomingLoading} = useGetMoviesByCategoryQuery({category: movieCategory.upcoming})
     const {data:nowPlayingData, isLoading:isNowPlayingLoading} = useGetMoviesByCategoryQuery({category: movieCategory.nowPlaying})
+    const {data:configurationData} = useGetConfigurationQuery()
+    const secureBaseUrl = configurationData?.images.secure_base_url
+    const posterSize = configurationData?.images.poster_sizes.find(el => el === "original")
 
     const randomPopularMovie = getRandomElement(popularData?.results || []);
     const isMainLoading = isPopularLoading || isTopLoading || isUpcomingLoading || isNowPlayingLoading;
@@ -18,7 +21,7 @@ export const Main = () => {
     const backgroundStyle = randomPopularMovie?.backdrop_path
         ? {
             backgroundImage: `linear-gradient(rgba(4, 21, 45, 0) 0%, rgb(18, 18, 18) 79.17%), 
-            url("https://image.tmdb.org/t/p/original${randomPopularMovie.backdrop_path}")`,
+            url("${secureBaseUrl}${posterSize}${randomPopularMovie.backdrop_path}")`,
         }
         : {
             backgroundImage: `linear-gradient(135deg, rgb(4, 21, 45) 0%, rgb(18, 18, 18) 100%)`,

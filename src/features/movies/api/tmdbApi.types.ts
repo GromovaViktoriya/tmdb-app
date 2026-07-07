@@ -1,8 +1,8 @@
 import z from "zod";
 import {
-    CastMemberSchema,
+    CastMemberSchema, ConfigurationResponseSchema,
     FilterParamsSchema, GenreSchema, GenresResponseSchema,
-    GetMoviesByCategoryParamsSchema,
+    GetMoviesByCategoryParamsSchema, ImagesConfigSchema,
     MovieCreditsResponseSchema,
     MovieDetailsParamsSchema,
     MovieDetailsResponseSchema,
@@ -12,8 +12,6 @@ import {
     MoviesResponseSchema,
     SearchParamsSchema, SortBySchema
 } from "@/features/movies/api/tmdbApi.schemas.ts";
-// --- Экспорт выведенных (inferred) типов ---
-// Теперь типы генерируются автоматически из схем. Если поменяется схема — поменяется и тип!
 
 export type Movie = z.infer<typeof MovieSchema>;
 export type MoviesResponse = z.infer<typeof MoviesResponseSchema>;
@@ -29,3 +27,5 @@ export type FilterParams = z.infer<typeof FilterParamsSchema>
 export type SortBy = z.infer<typeof SortBySchema>;
 export type Genre = z.infer<typeof GenreSchema>;
 export type GenresResponse = z.infer<typeof GenresResponseSchema>;
+export type ImagesConfig = z.infer<typeof ImagesConfigSchema>;
+export type ConfigurationResponse = z.infer<typeof ConfigurationResponseSchema>;

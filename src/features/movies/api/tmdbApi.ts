@@ -1,5 +1,6 @@
 import {baseApi} from "@/app/api/baseApi.ts";
 import type {
+    ConfigurationResponse,
     FilterParams, GenresResponse,
     getMoviesByCategoryParams,
     MovieCreditsResponse,
@@ -10,6 +11,7 @@ import type {
     SearchParams,
 } from "@/features/movies/api/tmdbApi.types.ts";
 import {
+    ConfigurationResponseSchema,
     GenresResponseSchema,
     MovieCreditsResponseSchema,
     MovieDetailsResponseSchema,
@@ -74,6 +76,13 @@ export const tmdbApi = baseApi.injectEndpoints({
             ...withZodCatch(GenresResponseSchema),
             providesTags: ['Movie'],
         }),
+        getConfiguration: build.query<ConfigurationResponse, void>({
+            query:()=>({
+                url: `/configuration`
+            }),
+            ...withZodCatch(ConfigurationResponseSchema),
+            providesTags: ['Movie'],
+        }),
     }),
 });
 
@@ -84,5 +93,6 @@ export const {
     useGetMovieDetailsQuery,
     useSearchMoviesQuery,
     useGetFiltersMoviesQuery,
-    useGetMovieGenresQuery
+    useGetMovieGenresQuery,
+    useGetConfigurationQuery
 } = tmdbApi

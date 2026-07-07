@@ -2,6 +2,7 @@ import s from "./GridMovieItem.module.css"
 import type {Movie} from "@/features/movies/api/tmdbApi.types.ts";
 import {useFavorites} from "@/common/hooks/useFavorites.ts";
 import {Link} from "react-router";
+import {useGetConfigurationQuery} from "@/features/movies/api/tmdbApi.ts";
 
 
 type Props = {
@@ -9,6 +10,9 @@ type Props = {
 }
 
 export const GridMovieItem = ({movie}: Props) => {
+    const {data}=useGetConfigurationQuery()
+    const secureBaseUrl = data?.images.secure_base_url;
+    const posterSize = data?.images.poster_sizes.find(el => el === "w185");
     const { isFavorite, toggleFavorite } = useFavorites();
 
     const active = isFavorite(movie.id);
@@ -25,7 +29,7 @@ export const GridMovieItem = ({movie}: Props) => {
                 <Link className={s.posterLink} to={`/movie/${movie.id}`} data-discover="true">
                     {movie.poster_path
                         ? <img className={s.poster} alt={movie.title}
-                               src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`}/>
+                               src={`${secureBaseUrl}${posterSize}/${movie.poster_path}`}/>
                         : <div className={s.posterFallback}>No poster</div>}
                     <span className={`ratingBadge ${badgeColor} badge`}
                           aria-label={`Rating ${movie.vote_average}`}>{movie.vote_average.toFixed(1)}</span>

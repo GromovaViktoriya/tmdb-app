@@ -87,6 +87,21 @@ export const GenresResponseSchema = z.object({
     genres: z.array(GenreSchema),
 });
 
+export const ImagesConfigSchema = z.object({
+    base_url: z.string(),
+    secure_base_url: z.string(),
+    backdrop_sizes: z.array(z.string()),
+    logo_sizes: z.array(z.string()),
+    poster_sizes: z.array(z.string()),
+    profile_sizes: z.array(z.string()),
+    still_sizes: z.array(z.string()),
+});
+
+export const ConfigurationResponseSchema = z.object({
+    images: ImagesConfigSchema,
+    change_keys: z.array(z.string()),
+});
+
 export const GetMoviesByCategoryParamsSchema = z.object({
     // Используем z.custom для интеграции твоего существующего типа movieCategory
     category: z.custom<movieCategory>(),
