@@ -1,0 +1,27 @@
+.page{
+    display: flex;
+    flex-direction: column;
+    gap: var(--filtered-page-gap);
+    padding-block: 24px;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: minmax(0px, 1fr) minmax(0px, 3fr);
+    gap: var(--filtered-page-gap);
+}
+
+.filtersColumn{
+    grid-column: 1;
+}
+
+.moviesColumn {
+    grid-column: 2;
+    min-width: 0;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}

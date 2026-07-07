@@ -47,6 +47,16 @@ export const MovieCreditsResponseSchema = z.object({
     cast: z.array(CastMemberSchema),
 });
 
+export const SortBySchema = z.enum([
+    "popularity.desc",
+    "popularity.asc",
+    "vote_average.desc",
+    "vote_average.asc",
+    "primary_release_date.desc",
+    "primary_release_date.asc",
+    "title.asc",
+    "title.desc",
+]);
 // --- Параметры запросов ---
 
 export const MovieParamsSchema = z.object({
@@ -57,6 +67,24 @@ export const MovieParamsSchema = z.object({
 export const SearchParamsSchema = z.object({
     query: z.string(),
     page: z.number(),
+});
+
+export const FilterParamsSchema = z.object({
+    page: z.number().int().positive().optional(),
+    language: z.string().optional(),
+    sort_by: SortBySchema.optional(),
+    "vote_average.gte": z.number().optional(),
+    "vote_average.lte": z.number().optional(),
+    with_genres: z.string().optional(),
+})
+
+export const GenreSchema = z.object({
+    id: z.number().int(),
+    name: z.string(),
+});
+
+export const GenresResponseSchema = z.object({
+    genres: z.array(GenreSchema),
 });
 
 export const GetMoviesByCategoryParamsSchema = z.object({
@@ -82,11 +110,6 @@ export const CollectionSchema = z.object({
     name: z.string(),
     poster_path: z.string().nullable(),
     backdrop_path: z.string().nullable(),
-});
-
-export const GenreSchema = z.object({
-    id: z.number(),
-    name: z.string(),
 });
 
 export const ProductionCompanySchema = z.object({
