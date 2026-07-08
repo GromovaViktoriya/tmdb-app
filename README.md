@@ -1,75 +1,44 @@
-# React + TypeScript + Vite
+Адаптивное React-приложение для поиска, фильтрации и изучения фильмов, работающее на базе TMDB API.
+🎬 TMDB Movie Explorer (tmdb-app)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+✨ Особенности (Features)
+Продвинутый поиск фильмов: Поиск фильмов по названию с мгновенной синхронизацией.
+Глубокая фильтрация и сортировка: Фильтрация по жанрам и диапазону рейтинга (с помощью интерактивных ползунков). 
+Сортировка по популярности, рейтингу, дате выхода и названию.
+Синхронизация с URL (URL-Driven State): Поисковые запросы, текущие страницы и фильтры полностью синхронизированы с адресной строкой. 
+Это позволяет делиться ссылками на конкретные результаты поиска.
+Адаптивный дизайн: Полная оптимизация под любые экраны (ПК, планшеты, смартфоны) исключительно с помощью чистого CSS и CSS Modules.
+Кэширование данных: Оптимизированные API-запросы и встроенное кэширование благодаря RTK Query.
+Строгая типизация: Надежные TypeScript-типы, выведенные напрямую из схем валидации Zod.
 
-Currently, two official plugins are available:
+🛠️ Технологический стек
+Фреймворк: React 18 + TypeScript
+Сборщик: Vite
+Стейт-менеджер и API: Redux Toolkit (RTK Query)
+Роутинг: React Router v6
+Стилизация: CSS Modules
+Валидация: Zod
+Деплой: Vercel
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Инструкция по развертыванию проекта на вашем компьютере.
+1.Clone the repository: 
+git clone [https://github.com/your-username/tmdb-app.git](https://github.com/your-username/tmdb-app.git)
+cd tmdb-app
 
-## React Compiler
+2.Install dependencies: 
+pnpm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+3.Set up Environment Variables:
+Create a .env file in the root directory and add your TMDB API configuration:
+VITE_API_KEY=your_tmdb_api_key_here
+VITE_BASE_URL=https://api.themoviedb.org/3
 
-## Expanding the ESLint configuration
+4.Start the development server:
+pnpm dev
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+Архитектура проекта вдохновлена методологией Feature-Sliced Design (FSD) для поддержания чистоты и масштабируемости кода.
+src/
+├── app/        # Глобальные настройки (store, роутер, глобальные стили)
+├── common/     # Общие UI-компоненты, хуки, константы и утилиты
+├── features/   # Бизнес-логика и фичи (API слайсы, типы)
+└── assets/     # Статические файлы (картинки, иконки)
