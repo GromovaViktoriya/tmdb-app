@@ -5,7 +5,8 @@
 🔗 Смотреть готовый проект: https://gromova-tmdb.vercel.app/
 
 
-✨ Особенности (Features)
+✨ Особенности (Features):
+
 Продвинутый поиск фильмов: Поиск фильмов по названию с мгновенной синхронизацией.
 
 Глубокая фильтрация и сортировка: Фильтрация по жанрам и диапазону рейтинга (с помощью интерактивных ползунков). 
@@ -27,6 +28,7 @@
 
 
 🛠️ Стек технологий:
+
 Фреймворк: React 18 + TypeScript
 Сборщик: Vite
 Стейт-менеджер и API: Redux Toolkit (RTK Query)
@@ -38,6 +40,7 @@
 
 
 🚀 Инструкция по развертыванию проекта на вашем компьютере.
+
 1.Clone the repository: 
 git clone [https://github.com/your-username/tmdb-app.git](https://github.com/your-username/tmdb-app.git)
 cd tmdb-app
