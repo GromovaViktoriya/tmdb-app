@@ -3,6 +3,8 @@ import {isErrorWithProperty} from "@/common/utils/isErrorWithProperty.ts";
 import {errorToast} from "@/common/utils/errorToast.ts";
 import {isErrorWithDetailArray} from "@/common/utils/isErrorWithDetailArray.ts";
 
+
+
 export const handleErrors = (error: FetchBaseQueryError) => {
     if (error) {
         switch (error.status) {

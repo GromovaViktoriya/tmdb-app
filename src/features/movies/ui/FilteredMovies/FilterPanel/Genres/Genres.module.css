@@ -1,0 +1,26 @@
+.genres{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.genreButton{
+    border-radius: 9999px;
+    border-color: var(--color-control-border);
+    background-color: var(--color-control-background);
+    color: var(--color-control-text);
+    font-size: 14px;
+    line-height: 1.2;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.genreButton:hover:not(:disabled) {
+    border-color: var(--color-indigo-400);
+    box-shadow: 0 0 0 2px rgb(var(--color-blue-600-rgb) / .1);
+}
+
+.genreButtonActive {
+    background-color: var(--color-blue-600);
+    border-color: var(--color-blue-600);
+    color: var(--color-white);
+}

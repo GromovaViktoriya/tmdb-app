@@ -2,9 +2,9 @@ import s from "./Main.module.css"
 import {SearchForm} from "@/common/components/SearchForm/SearchForm.tsx";
 import {MainMovieComponent} from "@/features/movies/ui/MainMovieComponent/MainMovieComponent.tsx";
 import {Path} from "@/common/routing";
-import {getRandomElement} from "@/common/utils/getRandomElement.ts";
 import {useGetConfigurationQuery, useGetMoviesByCategoryQuery} from "@/features/movies/api/tmdbApi.ts";
 import {movieCategory} from "@/common/constants";
+import {getRandomElement} from "@/common/utils";
 
 export const Main = () => {
     const {data:popularData, isLoading:isPopularLoading} = useGetMoviesByCategoryQuery({category: movieCategory.popular})

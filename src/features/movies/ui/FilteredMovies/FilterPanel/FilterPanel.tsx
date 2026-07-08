@@ -1,7 +1,9 @@
 import s from "./FilterPanel.module.css"
-import {SORT_OPTIONS_ARRAY} from "@/common/constants";
 import {type ChangeEvent, type MouseEvent} from "react";
 import type {Genre, SortBy} from "@/features/movies/api/tmdbApi.types.ts";
+import {Select} from "@/features/movies/ui/FilteredMovies/FilterPanel/Select/Select.tsx";
+import {Ranges} from "@/features/movies/ui/FilteredMovies/FilterPanel/Ranges/Ranges.tsx";
+import {Genres} from "@/features/movies/ui/FilteredMovies/FilterPanel/Genres/Genres.tsx";
 
 
 type Props = {
@@ -67,48 +69,22 @@ export const FilterPanel = ({
             setPage(1)
         }
     }
-    const activeGenresArray = selectedGenres ? selectedGenres.split(',') : [];
+
 
 
     return (
         <aside className={s.filters}>
             <h2 className={s.filtersTitle}>Filters / Sort</h2>
-            <div className={s.sortControls}>
-                <label className={s.sortLabel}>Sort by</label>
-                <select className={s.sortSelect} onChange={setSortByHandler}>
-                    {SORT_OPTIONS_ARRAY.map((option) => (
-                        <option key={option.value} value={option.value}>{option.label}</option>
-                    ))}
-                </select>
-            </div>
-            <div className={s.container}>
-                <div className={s.header}>
-                    <span>Rating</span>
-                    <span className={s.values}>{voteGte} - {voteLte}</span>
-                </div>
-                <div className={s.ranges}>
-                    <div className={s.rangeTrack}></div>
-                    <div className={s.rangeFill}
-                         style={{left: `${voteGte * 10}%`, width: `${(voteLte - voteGte) * 10}%`}}></div>
-                    <input min={0} max={10} step={0.1} className={s.rangeInput} aria-label="Minimum rating"
-                           type="range" value={voteGte} onChange={setVoteGteHandler}/>
-                    <input min={0} max={10} step={0.1} className={s.rangeInput} aria-label="Maximum rating"
-                           type="range" value={voteLte} onChange={setVoteLteHandler}/>
-                </div>
-            </div>
-            <div className={s.genres}>
-                {genres?.map((genre) => {
-                    const isActive = activeGenresArray.includes(genre.id.toString());
-
-                    return (
-                        <button key={genre.id} id={genre.id.toString()}
-                                className={`button variantSecondary sizeSmall ${s.genreButton} ${isActive ? s.genreButtonActive : ''}`}
-                                onClick={toggleGenreHandler}>
-                            {genre.name}
-                        </button>
-                    )
-                })}
-            </div>
+            <Select onChange={(event)=>setSortByHandler(event)}/>
+            <Ranges voteGte={voteGte}
+                    voteLte={voteLte}
+                    onGteChange={(event)=>setVoteGteHandler(event)}
+                    onLteChange={(event)=>setVoteLteHandler(event)}
+            />
+            <Genres genres={genres}
+                    selectedGenres={selectedGenres}
+                    onClickHandler={(event)=>toggleGenreHandler(event)}
+            />
             <div className={s.actions}>
                 <button className="button variantMain sizeSmall"
                         onClick={resetCallback}>

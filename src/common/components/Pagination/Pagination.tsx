@@ -1,6 +1,6 @@
 import {PaginationControls} from "@/common/components/Pagination/PaginationControls/PaginationControls.tsx";
-import {getPaginationPages} from "@/common/utils/getPaginationPages.ts";
 import s from "./Pagination.module.css"
+import {getPaginationPages} from "@/common/utils";
 
 type Props = {
     currentPage: number

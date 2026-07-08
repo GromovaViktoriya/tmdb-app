@@ -1,0 +1,92 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-gray-800);
+}
+
+.values{
+    font-size: 14px;
+    color: var(--color-gray-600);
+}
+
+.ranges{
+    position: relative;
+    height: 32px;
+}
+
+.rangeTrack{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 6px;
+    width: 100%;
+    border-radius: 999px;
+    background: var(--color-gray-200);
+    pointer-events: none;
+}
+
+.rangeFill{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-blue-600);
+    pointer-events: none;
+}
+
+.rangeInput{
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    width: 100%;
+    pointer-events: none;
+    -webkit-appearance: none;
+    background: transparent;
+}
+
+.rangeInput:focus-visible {
+    outline: none;
+}
+
+.rangeInput::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color-blue-600);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    margin-top: -1px;
+}
+
+
+.rangeInput::-moz-range-thumb {
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--color-blue-600);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.rangeInput::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.rangeInput::-moz-range-thumb:hover {
+    transform: scale(1.1);
+}

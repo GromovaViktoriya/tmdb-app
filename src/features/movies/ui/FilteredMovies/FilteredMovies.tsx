@@ -5,9 +5,9 @@ import {useGetFiltersMoviesQuery, useGetMovieGenresQuery} from "@/features/movie
 import {SortByOptions} from "@/common/constants";
 import {useEffect, useState} from "react";
 import type {SortBy} from "@/features/movies/api/tmdbApi.types.ts";
-import {useDebounceValue} from "@/common/hooks/useDebounceValue.ts";
 import {FilterPanel} from "@/features/movies/ui/FilteredMovies/FilterPanel/FilterPanel.tsx";
 import {useSearchParams} from "react-router";
+import {useDebounceValue} from "@/common/hooks";
 
 
 export const FilteredMovies = () => {

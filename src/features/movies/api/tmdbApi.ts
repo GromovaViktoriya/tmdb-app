@@ -17,7 +17,8 @@ import {
     MovieDetailsResponseSchema,
     MoviesResponseSchema
 } from "@/features/movies/api/tmdbApi.schemas.ts";
-import {withZodCatch} from "@/common/utils/withZodCatch.ts";
+import {withZodCatch} from "@/common/utils";
+
 
 export const tmdbApi = baseApi.injectEndpoints({
     endpoints: (build) => ({

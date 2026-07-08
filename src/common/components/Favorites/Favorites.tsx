@@ -1,7 +1,6 @@
 import s from "./Favorites.module.css"
 import {GridComponent} from "@/common/components/GridComponent/GridComponent.tsx";
-import {useFavorites} from "@/common/hooks/useFavorites.ts";
-
+import {useFavorites} from "@/common/hooks";
 
 export const Favorites = () => {
     const { favorites } = useFavorites();
