@@ -9,11 +9,16 @@ export const GridMovieItemSkeleton = () => {
                     containerClassName={s.posterLink}
                     height="100%"
                     style={{ display: 'block' }}
+                    baseColor={"var(--color-gray-300)"}
+                    highlightColor={"var(--color-gray-700)"}
                 />
             </div>
 
             <h3 className={s.cardTitle}>
-                <Skeleton width="65%" />
+                <Skeleton width="65%"
+                          baseColor={"var(--color-gray-300)"}
+                          highlightColor={"var(--color-gray-700)"}
+                />
             </h3>
         </article>
     )
