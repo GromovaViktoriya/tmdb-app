@@ -21,3 +21,17 @@
     grid-template-columns: repeat(var(--movie-grid-columns, 6), minmax(0, 1fr));
     gap: 24px;
 }
+
+/* === ДОБАВЛЯЕМ АДАПТИВ === */
+@media (max-width: 1024px) {
+    .grid { --movie-grid-columns: 4; gap: 20px; }
+}
+
+@media (max-width: 768px) {
+    .grid { --movie-grid-columns: 3; gap: 16px; }
+    .title { font-size: 20px; }
+}
+
+@media (max-width: 480px) {
+    .grid { --movie-grid-columns: 2; gap: 12px; }
+}

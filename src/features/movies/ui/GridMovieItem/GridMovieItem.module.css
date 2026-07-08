@@ -125,3 +125,37 @@ a:hover {
     font-weight: 500;
     color: var(--color-gray-900);
 }
+
+/* === ДОБАВЛЯЕМ АДАПТИВ === */
+/* Для сенсорных экранов (смартфоны, планшеты), где нет мыши */
+@media (hover: none) {
+    .favoriteButton {
+        opacity: 1;
+        transform: translateY(0);
+        /* Делаем ее чуть прозрачной, чтобы не сильно перекрывала постер */
+        background-color: rgba(15, 23, 42, 0.7);
+    }
+}
+
+@media (max-width: 768px) {
+    .cardTitle {
+        font-size: 14px;
+    }
+    .favoriteButton {
+        /* На мобильных кнопку можно сделать чуть меньше */
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+}
+
+@media (max-width: 600px) {
+    .cardTitle {
+        font-size: 14px;
+        /* Если названия очень длинные, можно ограничить их двумя строками: */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}

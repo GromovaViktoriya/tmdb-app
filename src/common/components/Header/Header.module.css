@@ -76,3 +76,29 @@ a {
     font-size: 20px;
     transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
 }
+
+/* === ДОБАВЛЯЕМ АДАПТИВ === */
+@media (max-width: 768px) {
+    .header {
+        /* Уменьшаем отступы по бокам для экономии места */
+        padding: 12px 16px;
+    }
+
+    .inner {
+        gap: 12px;
+    }
+
+    .nav {
+        /* Заставляем навигацию занимать 100% ширины, чтобы она перенеслась на новую строку */
+        flex: 1 1 100%;
+        /* Опускаем навигацию визуально на самый низ (под лого и кнопку) */
+        order: 3;
+        /* Немного уменьшаем шрифт и отступы между ссылками */
+        font-size: 14px;
+        gap: 8px;
+    }
+
+    .link {
+        padding: 4px 8px;
+    }
+}

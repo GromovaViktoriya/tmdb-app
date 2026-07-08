@@ -39,3 +39,21 @@
     font-size: 14px;
     color: var(--color-gray-500);
 }
+
+/* === ДОБАВЛЯЕМ АДАПТИВ === */
+@media (max-width: 768px) {
+    .avatarFrame {
+        width: 120px;
+        height: 120px;
+    }
+    .name { font-size: 14px; }
+    .character { font-size: 12px; }
+}
+
+@media (max-width: 480px) {
+    .avatarFrame {
+        /* На телефонах делаем карточки еще компактнее */
+        width: 100px;
+        height: 100px;
+    }
+}

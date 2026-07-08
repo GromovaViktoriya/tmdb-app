@@ -25,3 +25,22 @@
     flex-direction: column;
     gap: 24px;
 }
+
+
+/* === ДОБАВЛЯЕМ АДАПТИВ === */
+@media (max-width: 768px) {
+    .content {
+        /* Делаем одну колонку вместо двух. Фильтры встанут сверху, фильмы — снизу */
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .content{
+        gap: 10px;
+    }
+    .page{
+        padding-block: 15px;
+    }
+
+}

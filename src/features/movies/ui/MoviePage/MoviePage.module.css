@@ -4,3 +4,11 @@
     gap: 32px;
     padding-block: 24px;
 }
+
+/* === ДОБАВЛЯЕМ АДАПТИВ === */
+@media (max-width: 768px) {
+    .section {
+        gap: 24px;
+        padding-block: 16px;
+    }
+}

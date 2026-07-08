@@ -103,3 +103,52 @@
     font-size: 16px;
     color: var(--color-gray-500);
 }
+
+/* === ДОБАВЛЯЕМ АДАПТИВ === */
+@media (max-width: 768px) {
+    .content {
+        /* Магия перестроения: делаем 1 колонку вместо 280px + 1fr */
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .wrapper {
+        /* Центрируем обертку постера */
+        margin: 0 auto;
+        /* Можно немного ограничить максимальную ширину, чтобы постер не был гигантским на планшетах */
+        max-width: 280px;
+    }
+
+    .top {
+        gap: 12px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+
+    .detailTitle {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        /* На совсем маленьких экранах делаем постер еще чуть компактнее */
+        max-width: 240px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .meta {
+        /* Уменьшаем отступы между мета-данными (год, жанры, время) */
+        gap: 12px;
+        font-size: 14px;
+    }
+}

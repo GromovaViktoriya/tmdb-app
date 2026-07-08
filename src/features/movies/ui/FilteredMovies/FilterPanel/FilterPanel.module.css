@@ -17,3 +17,15 @@
     display: flex;
     justify-content: flex-start;
 }
+
+/* === ДОБАВЛЯЕМ АДАПТИВ === */
+@media (max-width: 768px) {
+    .filters {
+        padding: 16px;
+        gap: 24px;
+    }
+
+    .filtersTitle {
+        font-size: 18px;
+    }
+}

@@ -13,3 +13,35 @@
     grid-template-columns: repeat(var(--movie-grid-columns, 6), minmax(0, 1fr));
     gap: 24px;
 }
+
+/* === ДОБАВЛЯЕМ АДАПТИВ === */
+/* Для небольших десктопов и горизонтальных планшетов */
+@media (max-width: 1200px) {
+    .grid5, .grid6 {
+        --movie-grid-columns: 4;
+        gap: 20px;
+    }
+}
+
+/* Для вертикальных планшетов (тут сайдбар еще слева, места мало, поэтому 3 колонки) */
+@media (max-width: 992px) {
+    .grid5, .grid6 {
+        --movie-grid-columns: 3;
+        gap: 16px;
+    }
+}
+
+/* На 768px сайдбар уходит наверх, места снова много, но мы оставляем 3 или 2 колонки */
+@media (max-width: 768px) {
+    .grid5, .grid6 {
+        --movie-grid-columns: 3;
+    }
+}
+
+/* Для телефонов жестко переходим на 2 большие карточки */
+@media (max-width: 600px) {
+    .grid5, .grid6 {
+        --movie-grid-columns: 2;
+        gap: 12px;
+    }
+}

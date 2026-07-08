@@ -1,4 +1,4 @@
-.sortControls{
+.sortControls {
     display: flex;
     align-items: center;
     width: 100%;
@@ -14,7 +14,7 @@
     justify-content: space-between;
 }
 
-.sortSelect{
+.sortSelect {
     flex: 1;
     min-width: 200px;
     padding: 8px 12px;
@@ -28,7 +28,7 @@
     outline: none;
 }
 
-.sortSelect:hover{
+.sortSelect:hover {
     border-color: var(--color-indigo-400);
 }
 
@@ -42,4 +42,38 @@
     color: var(--color-control-text);
     font-size: 14px;
     padding: 8px;
+}
+
+/* === ДОБАВЛЯЕМ АДАПТИВ === */
+@media (max-width: 1200px) {
+    .sortLabel {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .sortSelect {
+        /* Убираем жесткую ширину, чтобы селект не разрывал контейнер */
+        min-width: 115px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 900px) {
+    .sortControls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .favoriteButton {
+        transform: scale(0.5);
+    }
+
+    .badge {
+        transform: scale(0.5);
+    }
 }

@@ -40,3 +40,18 @@ button:focus-visible{
 }
 
 
+/* === ДОБАВЛЯЕМ АДАПТИВ === */
+@media (max-width: 480px) {
+    .form {
+        flex-direction: column;
+    }
+
+    .input {
+        min-width: 100%;
+    }
+
+    .form button {
+        width: 100%;
+    }
+}
+
