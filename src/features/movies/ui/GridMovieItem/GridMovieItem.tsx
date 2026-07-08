@@ -10,10 +10,10 @@ type Props = {
 }
 
 export const GridMovieItem = ({movie}: Props) => {
-    const {data}=useGetConfigurationQuery()
+    const {data} = useGetConfigurationQuery()
     const secureBaseUrl = data?.images.secure_base_url;
     const posterSize = data?.images.poster_sizes.find(el => el === "w185");
-    const { isFavorite, toggleFavorite } = useFavorites();
+    const {isFavorite, toggleFavorite} = useFavorites();
 
     const active = isFavorite(movie.id);
     const movieRating = movie?.vote_average.toFixed(1)
@@ -32,13 +32,15 @@ export const GridMovieItem = ({movie}: Props) => {
                                src={`${secureBaseUrl}${posterSize}/${movie.poster_path}`}/>
                         : <div className={s.posterFallback}>No poster</div>}
                     <span className={`ratingBadge ${badgeColor} badge`}
-                          aria-label={`Rating ${movie.vote_average}`}>{movie.vote_average.toFixed(1)}</span>
+                          aria-label={`Rating ${movie.vote_average}`}>{movie.vote_average.toFixed(1)}
+                    </span>
                 </Link>
                 <button type="button"
                         className={`button variantSecondary sizeSmall ${s.favoriteButton} ${active ? s.favoriteButtonVisible : ''}`}
                         aria-pressed={active} aria-label="Remove from favorites"
                         title="Remove from favorites"
-                        onClick={() => toggleFavorite(movie)}>
+                        onClick={() => toggleFavorite(movie)}
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"
                          className={`${s.favoriteIcon} ${active ? s.favoriteIconActive : ''}`}>
                         <path

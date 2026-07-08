@@ -3,14 +3,28 @@ import {SearchForm} from "@/common/components/SearchForm/SearchForm.tsx";
 import {GridComponent} from "@/common/components/GridComponent/GridComponent.tsx";
 import {useSearchMoviesQuery} from "@/features/movies/api/tmdbApi.ts";
 import {useSearchParams} from "react-router";
-import {useState} from "react";
 import {Pagination} from "@/common/components/Pagination/Pagination.tsx";
 
+
 export const SearchPage = () => {
-    const [params] = useSearchParams();
-    const query = params.get('query') || '';
-    const [currentPage, setCurrentPage] = useState(1)
+    const [searchParams, setSearchParams] = useSearchParams();
+    const query = searchParams.get('query') || '';
+    const currentPage = Number(searchParams.get("page")) || 1;
+
     const {data, isLoading} = useSearchMoviesQuery({query, page: currentPage})
+
+    const handlePageChange = (newPage: number) => {
+        const params = new URLSearchParams(searchParams);
+
+        if (newPage > 1) {
+            params.set("page", newPage.toString());
+        } else {
+            params.delete("page");
+        }
+
+        setSearchParams(params);
+    };
+
 
 
     return (
@@ -24,7 +38,7 @@ export const SearchPage = () => {
                 {query.length > 0 && <GridComponent movies={data?.results} isLoading={isLoading}/>}
                 <Pagination
                     currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
+                    setCurrentPage={handlePageChange}
                     pagesCount={data?.total_pages || 1}
                 />
             </section>

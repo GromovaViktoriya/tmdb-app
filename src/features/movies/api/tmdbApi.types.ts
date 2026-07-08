@@ -2,11 +2,10 @@ import z from "zod";
 import {
     CastMemberSchema, ConfigurationResponseSchema,
     FilterParamsSchema, GenreSchema, GenresResponseSchema,
-    GetMoviesByCategoryParamsSchema, ImagesConfigSchema,
+    GetMoviesByCategoryParamsSchema,
     MovieCreditsResponseSchema,
     MovieDetailsParamsSchema,
     MovieDetailsResponseSchema,
-    MovieParamsSchema,
     MovieParamsWithIdSchema,
     type MovieSchema,
     MoviesResponseSchema,
@@ -17,7 +16,6 @@ export type Movie = z.infer<typeof MovieSchema>;
 export type MoviesResponse = z.infer<typeof MoviesResponseSchema>;
 export type CastMember = z.infer<typeof CastMemberSchema>;
 export type MovieCreditsResponse = z.infer<typeof MovieCreditsResponseSchema>;
-export type MovieParams = z.infer<typeof MovieParamsSchema>;
 export type SearchParams = z.infer<typeof SearchParamsSchema>;
 export type getMoviesByCategoryParams = z.infer<typeof GetMoviesByCategoryParamsSchema>;
 export type MovieParamsWithId = z.infer<typeof MovieParamsWithIdSchema>;
@@ -27,5 +25,4 @@ export type FilterParams = z.infer<typeof FilterParamsSchema>
 export type SortBy = z.infer<typeof SortBySchema>;
 export type Genre = z.infer<typeof GenreSchema>;
 export type GenresResponse = z.infer<typeof GenresResponseSchema>;
-export type ImagesConfig = z.infer<typeof ImagesConfigSchema>;
 export type ConfigurationResponse = z.infer<typeof ConfigurationResponseSchema>;

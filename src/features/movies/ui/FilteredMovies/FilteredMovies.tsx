@@ -4,10 +4,10 @@ import {Pagination} from "@/common/components/Pagination/Pagination.tsx";
 import {useGetFiltersMoviesQuery, useGetMovieGenresQuery} from "@/features/movies/api/tmdbApi.ts";
 import {SortByOptions} from "@/common/constants";
 import {useEffect, useState} from "react";
-import type {SortBy} from "@/features/movies/api/tmdbApi.types.ts";
 import {FilterPanel} from "@/features/movies/ui/FilteredMovies/FilterPanel/FilterPanel.tsx";
 import {useSearchParams} from "react-router";
 import {useDebounceValue} from "@/common/hooks";
+import type {SortBy} from "@/features/movies/api";
 
 
 export const FilteredMovies = () => {
@@ -29,7 +29,7 @@ export const FilteredMovies = () => {
         if (voteGte > 0) params.set("vote_gte", voteGte.toString());
         if (voteLte < 10) params.set("vote_lte", voteLte.toString());
         if (selectedGenres) params.set("with_genres", selectedGenres);
-        
+
         setSearchParams(params, { replace: true });
     }, [page, sortBy, debouncedVoteGte, debouncedVoteLte, selectedGenres, setSearchParams, voteGte, voteLte]);
 

@@ -16,6 +16,7 @@ export const MovieSchema = z.object({
     video: z.boolean(),
     vote_average: z.number(),
     vote_count: z.number(),
+
     // Добавлено на основе ответа сервера TMDB
     softcore: z.boolean().optional(),
 });
@@ -57,8 +58,8 @@ export const SortBySchema = z.enum([
     "title.asc",
     "title.desc",
 ]);
-// --- Параметры запросов ---
 
+// --- Параметры запросов ---
 export const MovieParamsSchema = z.object({
     language: z.string().optional(),
     page: z.number().optional(),
@@ -172,6 +173,8 @@ export const MovieDetailsResponseSchema = z.object({
     video: z.boolean(),
     vote_average: z.number(),
     vote_count: z.number(),
+
+
     // Добавлено на основе ответа сервера TMDB
     softcore: z.boolean(),
 });
