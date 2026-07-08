@@ -1,4 +1,5 @@
 Адаптивное React-приложение для поиска, фильтрации и изучения фильмов, работающее на базе TMDB API.
+
 🎬 TMDB Movie Explorer (tmdb-app)
 
 🔗 Смотреть готовый проект: https://gromova-tmdb.vercel.app/
@@ -24,6 +25,7 @@
 Архитектура проекта вдохновлена методологией Feature-Sliced Design (FSD) для поддержания чистоты и масштабируемости кода.
 
 
+
 🛠️ Стек технологий:
 Фреймворк: React 18 + TypeScript
 Сборщик: Vite
@@ -34,18 +36,22 @@
 Деплой: Vercel
 
 
+
 🚀 Инструкция по развертыванию проекта на вашем компьютере.
 1.Clone the repository: 
 git clone [https://github.com/your-username/tmdb-app.git](https://github.com/your-username/tmdb-app.git)
 cd tmdb-app
 
+
 2.Install dependencies: 
 pnpm install
+
 
 3.Set up Environment Variables:
 Create a .env file in the root directory and add your TMDB API configuration:
 VITE_API_KEY=your_tmdb_api_key_here
 VITE_BASE_URL=https://api.themoviedb.org/3
+
 
 4.Start the development server:
 pnpm dev
