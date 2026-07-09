@@ -29,3 +29,10 @@
         font-size: 18px;
     }
 }
+
+@media (max-width: 600px) {
+    .filters {
+        padding: 8px;
+        gap: 24px;
+    }
+}

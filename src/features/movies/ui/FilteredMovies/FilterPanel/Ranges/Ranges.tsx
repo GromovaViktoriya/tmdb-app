@@ -1,5 +1,7 @@
 import s from "./Ranges.module.css";
 import type {ChangeEvent} from "react";
+import {useSelector} from "react-redux";
+import {selectLanguage} from "@/app/model";
 
 type Props = {
     voteGte: number,
@@ -9,11 +11,16 @@ type Props = {
 }
 
 export const Ranges = ({voteGte, voteLte, onGteChange, onLteChange}:Props) => {
+    const language = useSelector(selectLanguage);
+    const isRu = language === "ru-RU";
 
+    const text = {
+        rating: isRu ? "Рейтинг" : "Rating"
+    };
     return (
         <div className={s.container}>
             <div className={s.header}>
-                <span>Rating</span>
+                <span>{text.rating}</span>
                 <span className={s.values}>{voteGte} - {voteLte}</span>
             </div>
             <div className={s.ranges}>

@@ -6,14 +6,17 @@ import {
 } from "@/features/movies/ui/MoviePage/MovieDetail/MovieDetailSkeleton/MovieDetailSkeleton.tsx";
 import {useState} from "react";
 import Skeleton from "react-loading-skeleton";
+import {useSelector} from "react-redux";
+import {selectLanguage} from "@/app/model";
 
 type Props = {
     movieId: number
 }
 
 export const MovieDetail = ({movieId}: Props) => {
+    const language = useSelector(selectLanguage);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
-    const {data: movie, isLoading} = useGetMovieDetailsQuery({movieId, language: "en-US"});
+    const {data: movie, isLoading} = useGetMovieDetailsQuery({movieId, params: {language}});
     const navigate = useNavigate()
 
     const movieRating = movie?.vote_average.toFixed(1)
@@ -24,6 +27,18 @@ export const MovieDetail = ({movieId}: Props) => {
     const navigateHandler = ()=>{
         navigate(-1)
     }
+    const isRu = language === 'ru-RU';
+    const text = {
+        back: isRu ? 'Назад' : 'Back',
+        releaseYear: isRu ? 'Год выпуска:' : 'Release year:',
+        runtime: isRu ? 'Продолжительность:' : 'Runtime:',
+        runtimeUnavailable: isRu ? 'неизвестна' : 'Runtime unavailable',
+        hours: isRu ? 'ч' : 'h',
+        minutes: isRu ? 'м' : 'm',
+        genres: isRu ? 'Жанры' : 'Genres',
+        noOverview: isRu ? 'Описание отсутствует.' : 'No overview available.',
+        noGenres: isRu ? 'Жанры отсутствуют.' : 'No genres available.'
+    };
 
     if(isLoading){
         return <MovieDetailSkeleton />
@@ -52,25 +67,25 @@ export const MovieDetail = ({movieId}: Props) => {
                 <header className={s.header}>
                     <div className={s.top}>
                         <h1 className={s.title}>{movie?.title}</h1>
-                        <button type="button" className={`button variantSecondary sizeSmall` } onClick={navigateHandler}>Back</button>
+                        <button type="button" className={`button variantSecondary sizeSmall` } onClick={navigateHandler}>{text.back}</button>
                     </div>
                     <div className={s.meta}>
                         <span
-                            className={s.metaItem}>Release year: {movie && new Date(movie.release_date).getFullYear()}</span>
+                            className={s.metaItem}>{text.releaseYear} {movie && new Date(movie.release_date).getFullYear()}</span>
                         <span className={`${s.ratingBadge} ${badgeColor} badge`}>{movie?.vote_average.toFixed(1)}</span>
                         <span
                             className={s.metaItem}>{movie?.runtime
-                            ? `Runtime: ${Math.floor(movie.runtime / 60)}h ${movie?.runtime % 60}m`
-                            : 'Runtime: Runtime unavailable'}</span>
+                            ? `${text.runtime} ${Math.floor(movie.runtime / 60)}${text.hours} ${movie?.runtime % 60}${text.minutes}`
+                            : `${text.runtime} ${text.runtimeUnavailable}`}</span>
                     </div>
                 </header>
-                <p className={s.text}>{ movie?.overview && movie?.overview.length > 0? movie.overview : 'No overview available.'}</p>
+                <p className={s.text}>{ movie?.overview && movie?.overview.length > 0? movie.overview : text.noOverview}</p>
                 <div className={s.detailSection}>
-                    <h2 className={s.detailTitle}>Genres</h2>
+                    <h2 className={s.detailTitle}>{text.genres}</h2>
                     <ul className={s.list}>
                         {movie?.genres && movie.genres.length !== 0? movie.genres.map((genre) => (
                             <li className={s.item} key={genre.id}>{genre.name}</li>
-                        )) : <p className={s.placeholder}>No genres available.</p>}
+                        )) : <p className={s.placeholder}>{text.noGenres}</p>}
                     </ul>
                 </div>
             </div>

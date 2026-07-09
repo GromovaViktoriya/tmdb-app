@@ -4,6 +4,8 @@ import type {Genre, SortBy} from "@/features/movies/api/tmdbApi.types.ts";
 import {Select} from "@/features/movies/ui/FilteredMovies/FilterPanel/Select/Select.tsx";
 import {Ranges} from "@/features/movies/ui/FilteredMovies/FilterPanel/Ranges/Ranges.tsx";
 import {Genres} from "@/features/movies/ui/FilteredMovies/FilterPanel/Genres/Genres.tsx";
+import {useSelector} from "react-redux";
+import {selectLanguage} from "@/app/model";
 
 
 type Props = {
@@ -32,6 +34,12 @@ export const FilterPanel = ({
                                 resetCallback
                             }: Props) => {
 
+    const language = useSelector(selectLanguage);
+    const isRu = language === "ru-RU";
+    const text = {
+        title: isRu ? "Фильтры / Сортировка" : "Filters / Sort",
+        reset: isRu ? "Сбросить фильтры" : "Reset filters"
+    };
     const setVoteGteHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const value = +e.currentTarget.value;
         if (value <= voteLte) {
@@ -74,7 +82,7 @@ export const FilterPanel = ({
 
     return (
         <aside className={s.filters}>
-            <h2 className={s.filtersTitle}>Filters / Sort</h2>
+            <h2 className={s.filtersTitle}>{text.title}</h2>
             <Select onChange={(event)=>setSortByHandler(event)}/>
             <Ranges voteGte={voteGte}
                     voteLte={voteLte}
@@ -88,7 +96,7 @@ export const FilterPanel = ({
             <div className={s.actions}>
                 <button className="button variantMain sizeSmall"
                         onClick={resetCallback}>
-                    Reset filters
+                    {text.reset}
                 </button>
             </div>
         </aside>

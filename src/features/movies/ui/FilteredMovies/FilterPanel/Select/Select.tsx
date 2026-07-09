@@ -1,6 +1,8 @@
 import s from "./Select.module.css";
-import {SORT_OPTIONS_ARRAY} from "@/common/constants";
+import {getSortOptionsArray} from "@/common/constants";
 import type {ChangeEvent} from "react";
+import {useSelector} from "react-redux";
+import {selectLanguage} from "@/app/model";
 
 
 type Props = {
@@ -8,12 +10,20 @@ type Props = {
 }
 
 export const Select = ({onChange}: Props) => {
+    const language = useSelector(selectLanguage);
+    const isRu = language === "ru-RU";
 
+    const text = {
+        sortBy: isRu ? "Фильтр по:" : "Sort by",
+    };
+
+    // Получаем переведенный массив опций
+    const translatedOptions = getSortOptionsArray(isRu);
     return (
         <div className={s.sortControls}>
-            <label className={s.sortLabel}>Sort by</label>
+            <label className={s.sortLabel}>{text.sortBy}</label>
             <select className={s.sortSelect} onChange={onChange}>
-                {SORT_OPTIONS_ARRAY.map((option) => (
+                {translatedOptions.map((option) => (
                     <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
             </select>

@@ -4,12 +4,15 @@ import {SimilarMovies} from "@/features/movies/ui/SimilarMovies/SimilarMovies.ts
 import {useParams} from "react-router";
 import {CastActors} from "@/features/movies/ui/GridActorItem/CastActors.tsx";
 import {useGetMovieCreditsQuery, useGetSimilarMoviesQuery} from "@/features/movies/api/tmdbApi.ts";
+import {useSelector} from "react-redux";
+import {selectLanguage} from "@/app/model";
 
 
 export const MoviePage = () => {
+    const language = useSelector(selectLanguage);
     const params = useParams()
-    const {data: castData, isLoading:isLoadingCast} = useGetMovieCreditsQuery({movieId: Number(params.id), params: {page: 1, language: "en-US"}});
-    const {data:similarData, isLoading:isLoadingSimilar} = useGetSimilarMoviesQuery({movieId:Number(params.id), params: {page: 1, language: "en-US"}});
+    const {data: castData, isLoading:isLoadingCast} = useGetMovieCreditsQuery({movieId: Number(params.id), params: {page: 1, language}});
+    const {data:similarData, isLoading:isLoadingSimilar} = useGetSimilarMoviesQuery({movieId:Number(params.id), params: {page: 1, language}});
 
     const showCast = isLoadingCast || (castData?.cast && castData.cast.length > 0);
     const showSimilar = isLoadingSimilar || (similarData?.results && similarData.results.length > 0);

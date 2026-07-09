@@ -3,7 +3,7 @@ import {
     CastMemberSchema, ConfigurationResponseSchema,
     FilterParamsSchema, GenreSchema, GenresResponseSchema,
     GetMoviesByCategoryParamsSchema,
-    MovieCreditsResponseSchema,
+    MovieCreditsResponseSchema, MovieDetailSchema,
     MovieDetailsParamsSchema,
     MovieDetailsResponseSchema,
     MovieParamsWithIdSchema,
@@ -26,3 +26,4 @@ export type SortBy = z.infer<typeof SortBySchema>;
 export type Genre = z.infer<typeof GenreSchema>;
 export type GenresResponse = z.infer<typeof GenresResponseSchema>;
 export type ConfigurationResponse = z.infer<typeof ConfigurationResponseSchema>;
+export type MovieDetail = z.infer<typeof MovieDetailSchema>;

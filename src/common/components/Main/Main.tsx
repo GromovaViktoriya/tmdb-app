@@ -5,18 +5,31 @@ import {Path} from "@/common/routing";
 import {useGetConfigurationQuery, useGetMoviesByCategoryQuery} from "@/features/movies/api/tmdbApi.ts";
 import {movieCategory} from "@/common/constants";
 import {getRandomElement} from "@/common/utils";
+import {useSelector} from "react-redux";
+import {selectLanguage} from "@/app/model";
 
 export const Main = () => {
-    const {data:popularData, isLoading:isPopularLoading} = useGetMoviesByCategoryQuery({category: movieCategory.popular})
-    const {data:topRatedData, isLoading:isTopLoading} = useGetMoviesByCategoryQuery({category: movieCategory.topRated})
-    const {data:upcomingData, isLoading:isUpcomingLoading} = useGetMoviesByCategoryQuery({category: movieCategory.upcoming})
-    const {data:nowPlayingData, isLoading:isNowPlayingLoading} = useGetMoviesByCategoryQuery({category: movieCategory.nowPlaying})
+    const language = useSelector(selectLanguage);
+    const isRu = language === "ru-RU";
+    const {data:popularData, isLoading:isPopularLoading} = useGetMoviesByCategoryQuery({category: movieCategory.popular, params:{language}})
+    const {data:topRatedData, isLoading:isTopLoading} = useGetMoviesByCategoryQuery({category: movieCategory.topRated, params:{language}})
+    const {data:upcomingData, isLoading:isUpcomingLoading} = useGetMoviesByCategoryQuery({category: movieCategory.upcoming, params:{language}})
+    const {data:nowPlayingData, isLoading:isNowPlayingLoading} = useGetMoviesByCategoryQuery({category: movieCategory.nowPlaying, params:{language}})
     const {data:configurationData} = useGetConfigurationQuery()
     const secureBaseUrl = configurationData?.images.secure_base_url
     const posterSize = configurationData?.images.poster_sizes.find(el => el === "original")
 
     const randomPopularMovie = getRandomElement(popularData?.results || []);
     const isMainLoading = isPopularLoading || isTopLoading || isUpcomingLoading || isNowPlayingLoading;
+
+    const text = {
+        title: isRu ? "Добро пожаловать" : "Welcome",
+        subtitle: isRu ? "Откройте для себя главные хиты TMDB" : "Browse highlighted titles from TMDB",
+        popular: isRu ? "Популярные фильмы" : "Popular Movies",
+        topRated: isRu ? "Лучшие по рейтингу" : "Top Rated Movies",
+        upcoming: isRu ? "Ожидаемые новинки" : "Upcoming Movies",
+        nowPlaying: isRu ? "Сейчас в кино" : "Now Playing Movies",
+    };
 
     const backgroundStyle = randomPopularMovie?.backdrop_path
         ? {
@@ -31,16 +44,16 @@ export const Main = () => {
         <section className={s.page}>
             <section className={s.section} style={backgroundStyle}>
                 <div className={s.content}>
-                    <h1 className={s.title}>Welcome</h1>
-                    <h2 className={s.subtitle}>Browse highlighted titles from TMDB</h2>
+                    <h1 className={s.title}>{text.title}</h1>
+                    <h2 className={s.subtitle}>{text.subtitle}</h2>
                     <SearchForm isLoading={isMainLoading}/>
                 </div>
             </section>
             <section className={s.sections}>
-                <MainMovieComponent title={"Popular Movies"} href={Path.PopularMovies} data={popularData?.results} isLoading={isPopularLoading}/>
-                <MainMovieComponent title={"Top Rated Movies"} href={Path.TopRatedMovies} data={topRatedData?.results} isLoading={isTopLoading}/>
-                <MainMovieComponent title={"Upcoming Movies"} href={Path.UpcomingMovies} data={upcomingData?.results} isLoading={isUpcomingLoading}/>
-                <MainMovieComponent title={"Now Playing Movies"} href={Path.NowPlayingMovies} data={nowPlayingData?.results} isLoading={isNowPlayingLoading}/>
+                <MainMovieComponent title={text.popular} href={Path.PopularMovies} data={popularData?.results} isLoading={isPopularLoading}/>
+                <MainMovieComponent title={text.topRated} href={Path.TopRatedMovies} data={topRatedData?.results} isLoading={isTopLoading}/>
+                <MainMovieComponent title={text.upcoming} href={Path.UpcomingMovies} data={upcomingData?.results} isLoading={isUpcomingLoading}/>
+                <MainMovieComponent title={text.nowPlaying} href={Path.NowPlayingMovies} data={nowPlayingData?.results} isLoading={isNowPlayingLoading}/>
             </section>
         </section>
     )

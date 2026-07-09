@@ -3,7 +3,7 @@ import type {
     ConfigurationResponse,
     FilterParams, GenresResponse,
     getMoviesByCategoryParams,
-    MovieCreditsResponse,
+    MovieCreditsResponse, MovieDetail,
     MovieDetailsParams,
     MovieDetailsResponse,
     MovieParamsWithId,
@@ -47,9 +47,9 @@ export const tmdbApi = baseApi.injectEndpoints({
             providesTags: ['Movie'],
         }),
         getMovieDetails: build.query<MovieDetailsResponse, MovieDetailsParams>({
-            query: ({movieId, language}) => ({
+            query: ({movieId, params}) => ({
                 url: `/movie/${movieId}`,
-                language
+                params
             }),
             ...withZodCatch(MovieDetailsResponseSchema),
             providesTags: ['Movie'],
@@ -70,9 +70,10 @@ export const tmdbApi = baseApi.injectEndpoints({
             ...withZodCatch(MoviesResponseSchema),
             providesTags: ['Movie'],
         }),
-        getMovieGenres: build.query<GenresResponse, void>({
-            query:()=>({
-                url: `/genre/movie/list`
+        getMovieGenres: build.query<GenresResponse, MovieDetail>({
+            query:(params)=>({
+                url: `/genre/movie/list`,
+                params
             }),
             ...withZodCatch(GenresResponseSchema),
             providesTags: ['Movie'],

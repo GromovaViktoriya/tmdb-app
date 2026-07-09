@@ -4,6 +4,8 @@ import {useNavigate, useSearchParams} from "react-router";
 import {Path} from "@/common/routing";
 import {SearchFormSkeleton} from "@/common/components/SearchForm/SearchFormSkeleton/SearchFormSkeleton.tsx";
 import type {ChangeEvent} from "react";
+import {useSelector} from "react-redux";
+import {selectLanguage} from "@/app/model";
 
 type SearchFormValues = {
     searchQuery: string;
@@ -16,6 +18,8 @@ type Props = {
 export const SearchForm = ({isLoading}: Props) => {
     const [params] = useSearchParams();
     const query = params.get('query')
+    const language = useSelector(selectLanguage);
+    const isRu = language === "ru-RU";
 
     const {
         register,
@@ -26,6 +30,11 @@ export const SearchForm = ({isLoading}: Props) => {
             searchQuery: query || ''
         }
     });
+
+    const text = {
+        placeholder: isRu ? "Поиск фильмов..." : "Search for a movie",
+        button: isRu ? "Искать" : "Search"
+    };
 
     const navigate = useNavigate();
     const currentSearchQuery = watch('searchQuery');
@@ -44,7 +53,7 @@ export const SearchForm = ({isLoading}: Props) => {
     return (
         <form className={`${s.form} ${s.formWrapper}`} onSubmit={handleSubmit(onSubmit)}>
             <input type="search" className={s.input}
-                   placeholder="Search for a movie"
+                   placeholder={text.placeholder}
                    {...register('searchQuery', {
                        onChange: (e: ChangeEvent<HTMLInputElement>) => {
                            if (e.target.value === '') {
@@ -52,7 +61,7 @@ export const SearchForm = ({isLoading}: Props) => {
                            }
                        }
                    })}/>
-            <button type="submit" className={"button variantMain sizeMedium"} disabled={isDisabled}>Search</button>
+            <button type="submit" className={"button variantMain sizeMedium"} disabled={isDisabled}>{text.button}</button>
         </form>
     )
 }

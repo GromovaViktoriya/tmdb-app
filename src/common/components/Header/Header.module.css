@@ -64,6 +64,12 @@ a {
     align-self: center;
 }
 
+.buttonWrapper{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
 .button {
     width: 40px;
     height: 40px;
@@ -76,6 +82,13 @@ a {
     font-size: 20px;
     transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
 }
+
+.languageBtn{
+    font-size: 16px;
+    color: var(--color-gray-900);
+}
+
+
 
 /* === ДОБАВЛЯЕМ АДАПТИВ === */
 @media (max-width: 768px) {

@@ -68,6 +68,7 @@ export const MovieParamsSchema = z.object({
 export const SearchParamsSchema = z.object({
     query: z.string(),
     page: z.number(),
+    language: z.string().optional(),
 });
 
 export const FilterParamsSchema = z.object({
@@ -77,6 +78,10 @@ export const FilterParamsSchema = z.object({
     "vote_average.gte": z.number().optional(),
     "vote_average.lte": z.number().optional(),
     with_genres: z.string().optional(),
+})
+
+export const MovieDetailSchema = z.object({
+    language: z.string().optional(),
 })
 
 export const GenreSchema = z.object({
@@ -116,7 +121,7 @@ export const MovieParamsWithIdSchema = z.object({
 
 export const MovieDetailsParamsSchema = z.object({
     movieId: z.number(),
-    language: z.string().optional(),
+    params: MovieDetailSchema,
 });
 
 // --- Вложенные сущности для Movie Details ---

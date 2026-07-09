@@ -8,10 +8,13 @@ import {FilterPanel} from "@/features/movies/ui/FilteredMovies/FilterPanel/Filte
 import {useSearchParams} from "react-router";
 import {useDebounceValue} from "@/common/hooks";
 import type {SortBy} from "@/features/movies/api";
+import {useSelector} from "react-redux";
+import {selectLanguage} from "@/app/model";
 
 
 export const FilteredMovies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
+    const language = useSelector(selectLanguage);
 
     const [page, setPage] = useState(Number(searchParams.get("page")) || 1);
     const [sortBy, setSortBy] = useState<SortBy>((searchParams.get("sort_by") as SortBy) || SortByOptions.popularityDown);
@@ -36,13 +39,14 @@ export const FilteredMovies = () => {
     const {data, isLoading} = useGetFiltersMoviesQuery(
         {
             page: page,
+            language,
             sort_by: sortBy,
             "vote_average.gte": debouncedVoteGte,
             "vote_average.lte": debouncedVoteLte,
             with_genres: selectedGenres
         });
 
-    const {data: genresData} = useGetMovieGenresQuery()
+    const {data: genresData} = useGetMovieGenresQuery({language})
 
     const resetCallback = () => {
         setPage(1)

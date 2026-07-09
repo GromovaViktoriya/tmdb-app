@@ -173,8 +173,9 @@ button,.button {
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 485px) {
   .sizeSmall {
-    padding: 6px 11px;
+    padding: 7px 11px;
+    font-size: 12px;
   }
 }
