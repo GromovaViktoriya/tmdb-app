@@ -6,7 +6,9 @@ export const MovieDetailSkeleton = () => {
         <div className={s.content}>
             {/* Левая колонка - Постер */}
             <div className={s.wrapper}>
-                <Skeleton height={420} borderRadius={16}
+                <Skeleton height="100%"
+                          style={{ aspectRatio: '2 / 3', display: 'block' }}
+                          borderRadius={16}
                           baseColor={"var(--color-gray-300)"}
                           highlightColor={"var(--color-gray-700)"}/>
             </div>

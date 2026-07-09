@@ -5,7 +5,7 @@ export const ActorCardSkeleton = () => {
     return (
         <article className={s.card}>
             <div className={s.avatarFrame}>
-                <Skeleton width={"160px"} height={"160px"} borderRadius={999}
+                <Skeleton width="100%" height="100%" borderRadius={999}
                           baseColor={"var(--color-gray-300)"}
                           highlightColor={"var(--color-gray-700)"}
                 />
