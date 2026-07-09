@@ -3,6 +3,8 @@ import type {Movie} from "@/features/movies/api/tmdbApi.types.ts";
 import {useFavorites} from "@/common/hooks/useFavorites.ts";
 import {Link} from "react-router";
 import {useGetConfigurationQuery} from "@/features/movies/api/tmdbApi.ts";
+import {useState} from "react";
+import Skeleton from "react-loading-skeleton";
 
 
 type Props = {
@@ -10,6 +12,7 @@ type Props = {
 }
 
 export const GridMovieItem = ({movie}: Props) => {
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
     const {data} = useGetConfigurationQuery()
     const secureBaseUrl = data?.images.secure_base_url;
     const posterSize = data?.images.poster_sizes.find(el => el === "w185");
@@ -27,9 +30,21 @@ export const GridMovieItem = ({movie}: Props) => {
         <article className={s.card}>
             <div className={s.posterFrame}>
                 <Link className={s.posterLink} to={`/movie/${movie.id}`} data-discover="true">
+                    {!isImageLoaded && (
+                        <Skeleton
+                            containerClassName={s.posterLink}
+                            height="100%"
+                            style={{ display: 'block' }}
+                            baseColor={"var(--color-gray-300)"}
+                            highlightColor={"var(--color-gray-700)"}
+                        />
+                    )}
                     {movie.poster_path
                         ? <img className={s.poster} alt={movie.title}
-                               src={`${secureBaseUrl}${posterSize}/${movie.poster_path}`}/>
+                               src={`${secureBaseUrl}${posterSize}/${movie.poster_path}`}
+                               style={{ display: isImageLoaded ? 'block' : 'none' }}
+                               onLoad={() => setIsImageLoaded(true)}
+                        />
                         : <div className={s.posterFallback}>No poster</div>}
                     <span className={`ratingBadge ${badgeColor} badge`}
                           aria-label={`Rating ${movie.vote_average}`}>{movie.vote_average.toFixed(1)}
