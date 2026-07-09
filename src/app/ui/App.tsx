@@ -6,6 +6,7 @@ import {LinearProgress} from "@/common/components/LinearProgress/LinearProgress.
 import {ToastContainer} from "react-toastify";
 import {useSelector} from "react-redux";
 import type {RootState} from "@/app/model/store.ts";
+import {ScrollToTop} from "@/common/components/ScrollToTop/ScrollToTop.tsx";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     });
     return (
         <div className={s.app}>
+            <ScrollToTop/>
             <Header/>
             {isGlobalFetching  && <LinearProgress/>}
             <Outlet/>
