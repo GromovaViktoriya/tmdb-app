@@ -36,7 +36,7 @@ export const GridMovieItem = ({movie}: Props) => {
                             height="100%"
                             style={{ display: 'block' }}
                             baseColor={"var(--color-gray-300)"}
-                            highlightColor={"var(--color-gray-700)"}
+                            highlightColor={"var(--color-gray-300)"}
                         />
                     )}
                     {movie.poster_path

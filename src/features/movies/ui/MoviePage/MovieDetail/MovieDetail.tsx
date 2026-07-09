@@ -37,7 +37,7 @@ export const MovieDetail = ({movieId}: Props) => {
                         style={{ aspectRatio: '2 / 3', display: 'block' }}
                         borderRadius={16}
                         baseColor={"var(--color-gray-300)"}
-                        highlightColor={"var(--color-gray-700)"}
+                        highlightColor={"var(--color-gray-300)"}
                     />
                 )}
                 <img className={s.image} alt={movie?.title}
