@@ -2,20 +2,20 @@ import type {movieCategory} from "@/common/constants";
 import z from "zod";
 
 export const MovieSchema = z.object({
-    adult: z.boolean(),
-    backdrop_path: z.string().nullable(),
-    genre_ids: z.array(z.number()),
+    adult: z.boolean().catch(false),
+    backdrop_path: z.string().nullable().catch(null),
+    genre_ids: z.array(z.number()).catch([]),
     id: z.number(),
-    original_language: z.string(),
-    original_title: z.string(),
-    overview: z.string(),
-    popularity: z.number(),
-    poster_path: z.string().nullable(),
-    release_date: z.string(),
-    title: z.string(),
-    video: z.boolean(),
-    vote_average: z.number(),
-    vote_count: z.number(),
+    original_language: z.string().catch("en"),
+    original_title: z.string().catch(""),
+    overview: z.string().catch("No overview available."),
+    popularity: z.number().catch(0),
+    poster_path: z.string().nullable().catch(null),
+    release_date: z.string().catch(""),
+    title: z.string().catch("Unknown Title"),
+    video: z.boolean().catch(false),
+    vote_average: z.number().catch(0),
+    vote_count: z.number().catch(0),
 
     // Добавлено на основе ответа сервера TMDB
     softcore: z.boolean().optional(),
