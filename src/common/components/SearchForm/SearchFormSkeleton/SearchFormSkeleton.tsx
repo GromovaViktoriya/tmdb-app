@@ -5,13 +5,13 @@ import s from "../SearchForm.module.css"
 export const SearchFormSkeleton = () => {
     return (
         <div className={`${s.form} ${s.formWrapper}`}>
-            <div style={{ flex: 1, minWidth: '240px' }}>
+            <div className={s.skeletonInput}>
                 <Skeleton height={44} borderRadius={999}
                           baseColor={"var(--color-gray-300)"}
                           highlightColor={"var(--color-gray-700)"}
                 />
             </div>
-            <div style={{ minWidth: '82px', flex: '1 1 auto' }}>
+            <div className={s.skeletonButton}>
                 <Skeleton height={44} borderRadius={999}
                           baseColor={"var(--color-gray-300)"}
                           highlightColor={"var(--color-gray-700)"}

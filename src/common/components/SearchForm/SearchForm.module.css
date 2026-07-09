@@ -39,18 +39,34 @@ button:focus-visible{
     outline-offset: 3px;
 }
 
+.skeletonInput {
+    flex: 1;
+    min-width: 240px;
+}
+
+.skeletonButton {
+    width: 120px;
+    flex-shrink: 0;
+}
+
 
 /* === ДОБАВЛЯЕМ АДАПТИВ === */
+@media (min-width: 481px) {
+    .form button {
+        min-width: 120px;
+    }
+}
+
 @media (max-width: 480px) {
     .form {
         flex-direction: column;
     }
 
-    .input {
+    .input, .skeletonInput {
         min-width: 100%;
     }
 
-    .form button {
+    .form button, .skeletonButton {
         width: 100%;
     }
 }
