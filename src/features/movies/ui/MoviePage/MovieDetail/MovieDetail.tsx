@@ -4,12 +4,15 @@ import {useNavigate} from "react-router";
 import {
     MovieDetailSkeleton
 } from "@/features/movies/ui/MoviePage/MovieDetail/MovieDetailSkeleton/MovieDetailSkeleton.tsx";
+import {useState} from "react";
+import Skeleton from "react-loading-skeleton";
 
 type Props = {
     movieId: number
 }
 
 export const MovieDetail = ({movieId}: Props) => {
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
     const {data: movie, isLoading} = useGetMovieDetailsQuery({movieId, language: "en-US"});
     const navigate = useNavigate()
 
@@ -28,10 +31,21 @@ export const MovieDetail = ({movieId}: Props) => {
     return (
         <div className={s.content}>
             <div className={s.wrapper}>
+                {!isImageLoaded && (
+                    <Skeleton
+                        height="100%"
+                        style={{ aspectRatio: '2 / 3', display: 'block' }}
+                        borderRadius={16}
+                        baseColor={"var(--color-gray-300)"}
+                        highlightColor={"var(--color-gray-700)"}
+                    />
+                )}
                 <img className={s.image} alt={movie?.title}
                      src={ movie?.poster_path
                          ? `https://image.tmdb.org/t/p/w342/${movie?.poster_path}`
                          : 'https://placehold.co/400x600?text=No+Poster'}
+                     style={{ display: isImageLoaded ? 'block' : 'none' }}
+                     onLoad={() => setIsImageLoaded(true)}
                 />
             </div>
             <div className={s.details}>
