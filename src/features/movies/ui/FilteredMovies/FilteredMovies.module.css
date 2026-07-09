@@ -30,17 +30,26 @@
 /* === ДОБАВЛЯЕМ АДАПТИВ === */
 @media (max-width: 768px) {
     .content {
-        /* Делаем одну колонку вместо двух. Фильтры встанут сверху, фильмы — снизу */
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 2fr);
     }
 }
 
-@media (max-width: 480px) {
-    .content{
+@media (max-width: 600px) {
+    .content {
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1.7fr);
         gap: 10px;
     }
-    .page{
-        padding-block: 15px;
+    .page {
+        padding-block: 12px;
     }
+}
 
+@media (max-width: 420px) {
+    .content {
+        grid-template-columns: minmax(0px, 1fr) minmax(0px, 1.35fr);
+        gap: 10px;
+    }
+    .page {
+        padding-block: 12px;
+    }
 }

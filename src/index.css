@@ -172,3 +172,9 @@ button,.button {
     transform: scale(0.9);
   }
 }
+
+@media (max-width: 425px) {
+  .sizeSmall {
+    padding: 6px 11px;
+  }
+}

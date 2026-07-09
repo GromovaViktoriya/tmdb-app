@@ -24,3 +24,12 @@
     border-color: var(--color-blue-600);
     color: var(--color-white);
 }
+
+
+
+@media (max-width: 425px) {
+    .genreButton {
+        font-size: 10px;
+        line-height: 1;
+    }
+}
