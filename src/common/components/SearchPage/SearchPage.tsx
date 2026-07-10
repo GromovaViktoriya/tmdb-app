@@ -43,7 +43,7 @@ export const SearchPage = () => {
 
     return (
         <section className={s.page}>
-            <h1 className={s.title}>Search Results</h1>
+            <h1 className={s.title}>{text.title}</h1>
             <SearchForm isLoading={isLoading} />
             <section className={s.section}>
                 {query.length > 0 &&  <div className={s.header}><h2 className={s.searchTitle}>{text.resultsFor}</h2></div>}
